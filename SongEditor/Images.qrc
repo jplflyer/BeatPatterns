@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/Images">
+        <file>Images/first.png</file>
+        <file>Images/gear.png</file>
+        <file>Images/last.png</file>
+        <file>Images/music.png</file>
+        <file>Images/pause.png</file>
+        <file>Images/play.png</file>
+        <file>Images/stop.png</file>
+        <file>Images/info.png</file>
+        <file>Images/arrowDown.png</file>
+        <file>Images/arrowDownLeft.png</file>
+        <file>Images/arrowDownRight.png</file>
+        <file>Images/arrowLeft.png</file>
+        <file>Images/arrowNone.png</file>
+        <file>Images/arrowRight.png</file>
+        <file>Images/arrowUp.png</file>
+        <file>Images/arrowUpLeft.png</file>
+        <file>Images/arrowUpRight.png</file>
+        <file>Images/blueCube.png</file>
+        <file>Images/redCube.png</file>
+    </qresource>
+</RCC>

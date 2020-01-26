@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SongInfoForm</class>
+ <widget class="QWidget" name="SongInfoForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>790</width>
+    <height>558</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="2">
+    <widget class="QLineEdit" name="songSubNameTF"/>
+   </item>
+   <item row="10" column="0" colspan="2">
+    <widget class="QLabel" name="authorNameL">
+     <property name="text">
+      <string>Song Author Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QLabel" name="dirNameL">
+     <property name="text">
+      <string>Directory Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <widget class="QLineEdit" name="authorNameTF"/>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QLabel" name="songNameL">
+     <property name="text">
+      <string>Song Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="14" column="0">
+    <widget class="QLabel" name="bpmL">
+     <property name="text">
+      <string>BPM:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="3">
+    <widget class="QLabel" name="titleL">
+     <property name="text">
+      <string>Song Details</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QLabel" name="songFileNameL">
+     <property name="text">
+      <string>Song Filename:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QLabel" name="songSubNameL">
+     <property name="text">
+      <string>Song Sub-Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2">
+    <widget class="QLineEdit" name="mapperNameTF"/>
+   </item>
+   <item row="15" column="0" colspan="2">
+    <widget class="QLabel" name="offsetTimeL">
+     <property name="text">
+      <string>Offset Time:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="2">
+    <widget class="QLabel" name="coverImageL">
+     <property name="text">
+      <string>Cover Image File Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="17" column="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLineEdit" name="songNameTF"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="mapperNameL">
+     <property name="text">
+      <string>Mapper Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="dirNameTF">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2">
+    <widget class="QLineEdit" name="coverImageTF"/>
+   </item>
+   <item row="14" column="2">
+    <widget class="QLineEdit" name="bpmTF"/>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLineEdit" name="songFileNameTF"/>
+   </item>
+   <item row="15" column="2">
+    <widget class="QLineEdit" name="offsetTimeTF"/>
+   </item>
+   <item row="16" column="0">
+    <widget class="QLabel" name="durationL">
+     <property name="text">
+      <string>Duration:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="2">
+    <widget class="QLineEdit" name="durationTF">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

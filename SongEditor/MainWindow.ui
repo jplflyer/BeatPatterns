@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="helloLabel">
+      <property name="text">
+       <string>Open a File or Create A New Song</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuCubes">
+    <property name="title">
+     <string>Cubes</string>
+    </property>
+    <addaction name="actionUp_Left"/>
+    <addaction name="actionUp"/>
+    <addaction name="actionUp_Right"/>
+    <addaction name="actionRight"/>
+    <addaction name="actionDown_Right"/>
+    <addaction name="actionDown"/>
+    <addaction name="actionDown_Left"/>
+    <addaction name="actionLeft"/>
+    <addaction name="actionCentered"/>
+    <addaction name="separator"/>
+    <addaction name="actionRed"/>
+    <addaction name="actionBlue"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuCubes"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSetup"/>
+   <addaction name="actionSong_Info"/>
+   <addaction name="actionSong_Map"/>
+  </widget>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionSetup">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/gear.png</normaloff>:/Images/Images/gear.png</iconset>
+   </property>
+   <property name="text">
+    <string>Setup</string>
+   </property>
+  </action>
+  <action name="actionSong_Info">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/info.png</normaloff>:/Images/Images/info.png</iconset>
+   </property>
+   <property name="text">
+    <string>Song Info</string>
+   </property>
+  </action>
+  <action name="actionSong_Map">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/music.png</normaloff>:/Images/Images/music.png</iconset>
+   </property>
+   <property name="text">
+    <string>Song Map</string>
+   </property>
+  </action>
+  <action name="actionUp_Left">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowUpLeft.png</normaloff>:/Images/Images/arrowUpLeft.png</iconset>
+   </property>
+   <property name="text">
+    <string>Up Left</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+7</string>
+   </property>
+  </action>
+  <action name="actionUp">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowUp.png</normaloff>:/Images/Images/arrowUp.png</iconset>
+   </property>
+   <property name="text">
+    <string>Up</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+8</string>
+   </property>
+  </action>
+  <action name="actionUp_Right">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowUpRight.png</normaloff>:/Images/Images/arrowUpRight.png</iconset>
+   </property>
+   <property name="text">
+    <string>Up Right</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+9</string>
+   </property>
+  </action>
+  <action name="actionRight">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowRight.png</normaloff>:/Images/Images/arrowRight.png</iconset>
+   </property>
+   <property name="text">
+    <string>Right</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+6</string>
+   </property>
+  </action>
+  <action name="actionDown_Right">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowDownRight.png</normaloff>:/Images/Images/arrowDownRight.png</iconset>
+   </property>
+   <property name="text">
+    <string>Down Right</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+3</string>
+   </property>
+  </action>
+  <action name="actionDown">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowDown.png</normaloff>:/Images/Images/arrowDown.png</iconset>
+   </property>
+   <property name="text">
+    <string>Down</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+2</string>
+   </property>
+  </action>
+  <action name="actionDown_Left">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowDownLeft.png</normaloff>:/Images/Images/arrowDownLeft.png</iconset>
+   </property>
+   <property name="text">
+    <string>Down Left</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+1</string>
+   </property>
+  </action>
+  <action name="actionLeft">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowLeft.png</normaloff>:/Images/Images/arrowLeft.png</iconset>
+   </property>
+   <property name="text">
+    <string>Left</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+4</string>
+   </property>
+  </action>
+  <action name="actionCentered">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/arrowNone.png</normaloff>:/Images/Images/arrowNone.png</iconset>
+   </property>
+   <property name="text">
+    <string>Centered</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+5</string>
+   </property>
+  </action>
+  <action name="actionRed">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/redCube.png</normaloff>:/Images/Images/redCube.png</iconset>
+   </property>
+   <property name="text">
+    <string>Red</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
+   </property>
+  </action>
+  <action name="actionBlue">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/Images/Images/blueCube.png</normaloff>:/Images/Images/blueCube.png</iconset>
+   </property>
+   <property name="text">
+    <string>Blue</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+B</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="Images.qrc"/>
+ </resources>
+ <connections/>
+</ui>

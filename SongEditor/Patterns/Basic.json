@@ -1,0 +1,246 @@
+[
+	{
+		"name": "Blue Down Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 0},
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Down"}
+			]
+		]
+	},
+	{
+		"name": "Red Down Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"transformation": { "patternName": "Blue Down Slice", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Up Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 0},
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Up"}
+			]
+		]
+	},
+	{
+		"name": "Red Up Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"transformation": { "patternName": "Blue Up Slice", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Right Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 0},
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Right"}
+			]
+		]
+	},
+	{
+		"name": "Red Left Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"transformation": { "patternName": "Blue Right Slice", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Left Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 0},
+			{ "lineIndex": 1, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Left"}
+			]
+		]
+	},
+	{
+		"name": "Red Right Slice",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"transformation": { "patternName": "Blue Left Slice", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Up/Down",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 0},
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Up"}
+			],
+			[
+				{ "cubeType": "Blue", "cutDirection": "Down"}
+			]
+		]
+	},
+	{
+		"name": "Red Up/Down",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"transformation": { "patternName": "Blue Up/Down", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Down/Up",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 0},
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Down"}
+			],
+			[
+				{ "cubeType": "Blue", "cutDirection": "Up"}
+			]
+		]
+	},
+	{
+		"name": "Red Down/Up",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"transformation": { "patternName": "Blue Down/Up", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue/Red Down",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 300, "normal": 400, "hard": 400, "expert": 300, "expertPlus": 200},
+		"startingLocations": [
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Down"},
+				{ "cubeType": "Red", "cutDirection": "Down", "relativeX": -1}
+			]
+		]
+	},
+	{
+		"name": "Red/Blue Down",
+		"comments": "Red and blue down slice, red on the right by swapping colors but not sides.",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 200, "normal": 300, "hard": 400, "expert": 300, "expertPlus": 300},
+		"transformation": { "patternName": "Blue/Red Down", "swapColors": true, "mirrorLeftRight": false }
+	},
+	{
+		"name": "Blue/Red Up",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 300, "normal": 400, "hard": 400, "expert": 300, "expertPlus": 200},
+		"startingLocations": [
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
+
+			{ "lineIndex": 1, "lineLayer": 2},
+			{ "lineIndex": 2, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Up"},
+				{ "cubeType": "Red", "cutDirection": "Up", "relativeX": -1}
+			]
+		]
+	},
+	{
+		"name": "Red/Blue Up",
+		"comments": "Red and blue up slice, red on the right by swapping colors but not sides.",
+		"difficulty": "Easy",
+		"useWeights": { "easy": 200, "normal": 300, "hard": 400, "expert": 300, "expertPlus": 300},
+		"transformation": { "patternName": "Blue/Red Up", "swapColors": true, "mirrorLeftRight": false }
+	}
+]

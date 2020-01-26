@@ -1,0 +1,69 @@
+#ifndef PREFERENCES_H
+#define PREFERENCES_H
+
+#include <string>
+#include <map>
+
+#include <vitac/JSON_Serializable.h>
+#include <vitac/StringVector.h>
+
+#include "Pattern.h"
+
+namespace SongEditor {
+
+class Preferences: public JSON_Serializable
+{
+protected:
+    static Preferences * s_singleton;
+
+    std::string		appLocation;
+
+    /** Our home directory as best we can tell. */
+    std::string		homeDir;
+
+    /** Location of our config file, saved only if the user makes changes. */
+    std::string		configFileName;
+
+    /**
+     * Where do we put all our works in progress?
+     * Default: ~/Music/BeatSaber
+     */
+    std::string		libraryPath;
+
+    /**
+     * The history of things we've loaded in the past.
+     */
+    StringVector history;
+
+    /**
+     * The configured patterns.
+     */
+    Pattern_Vec patterns;
+    std::map<std::string, Pattern *> patternsMap;
+
+    Preferences();
+    void load();
+    void _save() const;
+    void _pushHistory(const std::string &dirName);
+
+public:
+    static Preferences * getSingleton();
+
+    static std::string & getAppLocation() { return getSingleton()->appLocation; }
+    static std::string & getLibraryPath() { return getSingleton()->libraryPath; }
+    static std::string & getHomeDirectory() { return getSingleton()->homeDir; }
+    static std::string & getConfigFileName() { return getSingleton()->configFileName; }
+    static Pattern_Vec & getPatterns() { return getSingleton()->patterns; }
+
+    static void setLibraryPath(const std::string &value) { getSingleton()->libraryPath = value; }
+    static void addHistory(const std::string &dirName) { getSingleton()->_pushHistory(dirName); }
+
+    static void save();
+
+    void fromJSON(const nlohmann::json & json);
+    void toJSON(nlohmann::json & json) const;
+};
+
+};
+
+#endif // PREFERENCES_H
