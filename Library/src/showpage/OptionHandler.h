@@ -31,10 +31,10 @@ public:
 		 * one of no_argument, required_argument, and optional_argument:
 		 * whether option takes an argument
 		 */
-		int has_arg;
+        int has_arg = no_argument;
 
 		/** if flag not NULL, value to set *flag to; else return value */
-		char val;
+        char val = 0;
 
 		/** What to call. */
 		CallbackFunction callbackFunction;
@@ -47,6 +47,11 @@ public:
 
         // Methods.
         Argument();
+        Argument(const char *_name);
+
+        // This version has no -c version, same as passing in a zero.
+        Argument(const char *_name, int _has_arg, CallbackFunction cb, const std::string & argText = "", const std::string & help = "");
+
         Argument(const char *_name, int _has_arg, char _val, CallbackFunction cb, const std::string & argText = "", const std::string & help = "");
         Argument(const Argument &arg);
 

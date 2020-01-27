@@ -73,6 +73,31 @@ OptionHandler::Argument::Argument() {
 }
 
 /**
+ * Constructor.
+ */
+OptionHandler::Argument::Argument( const char *_name ) {
+    if (_name != nullptr) {
+        name = _name;
+    }
+}
+
+/**
+ * Complicated constructor.
+ */
+OptionHandler::Argument::Argument(
+    const char *_name,
+    int _has_arg,
+    CallbackFunction cb,
+    const string & argText,
+    const string & help )
+: has_arg(_has_arg), callbackFunction(cb), argumentText(argText), helpText(help)
+{
+    if (_name != nullptr) {
+        name = _name;
+    }
+}
+
+/**
  * Complicated constructor.
  */
 OptionHandler::Argument::Argument(

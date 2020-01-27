@@ -50,6 +50,7 @@ public:
     static Preferences * getSingleton();
 
     static void setAppLocation(const std::string &value) { appLocation = value; }
+    static void setupForCLI();
     static std::string & getAppLocation() { return getSingleton()->appLocation; }
     static std::string & getLibraryPath() { return getSingleton()->libraryPath; }
     static std::string & getHomeDirectory() { return getSingleton()->homeDir; }

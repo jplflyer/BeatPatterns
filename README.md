@@ -107,3 +107,26 @@ The build puts them there. However, it doesn't necessarily update them reliably.
 OR there's a Copy.sh script in the SongEditor directory you can run.
 
 Note that I also have a bunch of image files that get copied the same way, but there rather static, so it should just be fine. Copy.sh doesn't touch them.
+
+# Immediate Next Steps
+
+* CLI
+  * Build the CLI. It will make the next immediate steps more efficient. Estimated 2 hours.
+  * Fix creation of new difficulty layer. Estimated 30 minutes.
+  * Generator: better flow between patterns. Estimated 2 hours.
+  * Generator: some initial default lighting, even if it's weak. Estimated 30 minutes.
+  * Save: should generate a new zip file. Estimated 30 minutes.
+  * Implement New. Estimated 1 hour.
+
+* GUI
+  * Step through the map: Estimated 2 hours.
+  * Autoplay through the song: Estimated 30 minutes.
+  * Map Set Selection. I think the beatmap sets are for the different forms -- single saber, 90-degrees, 360-degrees, and whatever else. Estimated: 30 minutes
+  * About page. Estimated 30 minutes.
+
+* Preferences
+  * Different min/max fields based on difficulty. Estimated 30 minutes.
+
+* Packaging
+  * Version. Estimated 15 minutes.
+  * Store builds somewhere for easy download. Estimated 30 minutes.

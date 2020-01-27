@@ -27,6 +27,7 @@ SOURCES += \
     src/showpage/URI.cpp \
     src/showpage/WaitCondition.cpp \
     src/showpage/WorkQueue.cpp \
+    src/song_editor/CLI.cpp \
     src/song_editor/Common.cpp \
     src/song_editor/Generator.cpp \
     src/song_editor/Pattern.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     src/showpage/UnitTesting.h \
     src/showpage/WaitCondition.h \
     src/showpage/WorkQueue.h \
+    src/song_editor/CLI.h \
     src/song_editor/Common.h \
     src/song_editor/Generator.h \
     src/song_editor/Pattern.h \
