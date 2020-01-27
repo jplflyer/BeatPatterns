@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "NotesViewPanel.h"
 
-#include "Song.h"
+#include <song_editor/Song.h>
 
 namespace Ui {
 class NotesTableForm;

@@ -10,7 +10,7 @@
 #include <QLineEdit>
 #include <QIcon>
 
-#include "Song.h"
+#include <song_editor/Song.h>
 
 class IconHolder {
 public:

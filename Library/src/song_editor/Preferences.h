@@ -4,8 +4,8 @@
 #include <string>
 #include <map>
 
-#include <vitac/JSON_Serializable.h>
-#include <vitac/StringVector.h>
+#include <showpage/JSON_Serializable.h>
+#include <showpage/StringVector.h>
 
 #include "Pattern.h"
 
@@ -16,7 +16,7 @@ class Preferences: public JSON_Serializable
 protected:
     static Preferences * s_singleton;
 
-    std::string		appLocation;
+    static std::string		appLocation;
 
     /** Our home directory as best we can tell. */
     std::string		homeDir;
@@ -49,6 +49,7 @@ protected:
 public:
     static Preferences * getSingleton();
 
+    static void setAppLocation(const std::string &value) { appLocation = value; }
     static std::string & getAppLocation() { return getSingleton()->appLocation; }
     static std::string & getLibraryPath() { return getSingleton()->libraryPath; }
     static std::string & getHomeDirectory() { return getSingleton()->homeDir; }

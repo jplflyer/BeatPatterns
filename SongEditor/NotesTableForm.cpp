@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
 
-#include "Song.h"
+#include <song_editor/Song.h>
+#include <song_editor/Generator.h>
 
 #include "NotesTableForm.h"
 #include "ui_NotesTableForm.h"
 
-#include "Generator.h"
 
 using namespace SongEditor;
 using std::string;

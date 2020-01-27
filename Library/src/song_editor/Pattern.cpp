@@ -2,7 +2,7 @@
 #include <iostream>
 #include <boost/filesystem.hpp>
 
-#include <vitac/StringMethods.h>
+#include <showpage/StringMethods.h>
 
 #include "Pattern.h"
 

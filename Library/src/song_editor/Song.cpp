@@ -5,7 +5,7 @@
 #include <sys/stat.h>
 
 #include <boost/filesystem.hpp>
-#include <vitac/StringMethods.h>
+#include <showpage/StringMethods.h>
 
 #include "Song.h"
 

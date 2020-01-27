@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 
-#include "Song.h"
+#include <song_editor/Song.h>
 #include "SetupForm.h"
 #include "SongInfoForm.h"
 #include "NotesTableForm.h"

@@ -12,7 +12,7 @@
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "Preferences.h"
+#include <song_editor/Preferences.h>
 
 using namespace std;
 using namespace SongEditor;

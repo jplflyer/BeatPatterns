@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "Song.h"
+#include <song_editor/Song.h>
 
 namespace Ui {
 class SongInfoForm;

@@ -1,10 +1,10 @@
 #include <iostream>
 #include <QFileDialog>
 
+#include <song_editor/Generator.h>
+
 #include "SetupForm.h"
 #include "ui_SetupForm.h"
-
-#include "Preferences.h"
 
 using namespace std;
 using namespace SongEditor;

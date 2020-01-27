@@ -10,9 +10,7 @@
 
 #include <boost/filesystem.hpp>
 
-#include <QCoreApplication>
-
-#include <vitac/StringMethods.h>
+#include <showpage/StringMethods.h>
 
 #include "Preferences.h"
 
@@ -22,6 +20,8 @@ using JSON = nlohmann::json;
 namespace SongEditor {
 
 Preferences * Preferences::s_singleton = nullptr;
+std::string Preferences::appLocation;
+
 static mutex myMytex;
 
 /**
@@ -74,15 +74,7 @@ Preferences::load() {
 
     // Then we load the standard patterns.
     // This will correspond to the SongEditor.app/Contents/MacOS directory.
-    string appDir = QCoreApplication::applicationDirPath().toStdString();
-
-    boost::filesystem::path appDirPath(appDir);
-    boost::filesystem::path contentsPath = appDirPath.parent_path();
-    boost::filesystem::path applicationPath = contentsPath.parent_path();
-
-    appLocation = applicationPath.string();
-
-    string patternsDirName = contentsPath.string() + "/Resources/Patterns";
+    string patternsDirName = appLocation + "/Contents/Resources/Patterns";
     patterns.load(patternsDirName);
     patterns.mapInto(patternsMap);
 }

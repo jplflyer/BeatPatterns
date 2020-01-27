@@ -1,5 +1,7 @@
 # Introduction
-This is not yet ready for prime time! Or any time, really, but it CAN auto-generate a Beat Saber song map with a single click.
+This is not yet ready for prime time! Or any time, really, but it CAN auto-generate a Beat Saber song map with a single click. Note that you can't currently build anything because I have to move some things into the library that doesn't yet exist.
+
+If you play Beat Saber, bookmark this repo and come back in a couple of weeks.
 
 This is Joe's Beat Saber Song Map Editor. It's written in C++. There's a CLI that should run on any UNIX-like system. The GUI is written in Qt. I've compiled for MacOS. Someone enterprising should be able to get this to work under Windows.
 
@@ -52,6 +54,14 @@ In the library directory, there are some important includes with their correspon
 * Song.h provides everything for reading/writing the files that BeatSaber expects.
 * Pattern.h provides everything for managing the patterns.
 
+Note: Qt on Mac has a problem when running apps from the Qt Creator. There's an easy workaround. You have to do this once.
+
+For inside Qt Creator, in the very left side, go to Projects (Under Welcome, Edit, etc). That gives you a secondary (wider) navigation area. Under Build and Run, under Desktop Qt (etc), click on Run.
+
+This brings you to run settings. In the middle of the screen near the top is a grey box with some stuff. One of those checkboxes near the bottom of that grey box is "Add build library search path to DYLD_LIBRARY_PATH...".
+
+Click that sucker OFF.
+
 # Code Goals
 There's a lot to do.
 
@@ -86,3 +96,14 @@ Hit Regenerate. this will destroy your level map and fill it in. So don't do thi
 Then save it.
 
 To install it on your machine, you'll need to know how to use BMBF. And you'll need to zip it yourself.
+
+# About the Patterns files
+The code expects to find patterns inside the SongEditor.app directory:
+
+    SongEditor.app/Contents/Resources/Patterns
+
+The build puts them there. However, it doesn't necessarily update them reliably. If you edit the file in the main project area, you might have to clean-all and rebuild to get it there.
+
+OR there's a Copy.sh script in the SongEditor directory you can run.
+
+Note that I also have a bunch of image files that get copied the same way, but there rather static, so it should just be fine. Copy.sh doesn't touch them.

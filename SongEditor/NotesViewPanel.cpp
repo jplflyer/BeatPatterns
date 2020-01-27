@@ -4,12 +4,11 @@
 
 #include <QPixmap>
 
-#include <vitac/StringMethods.h>
+#include <showpage/StringMethods.h>
+#include <song_editor/Song.h>
+#include <song_editor/Generator.h>
 
 #include "NotesViewPanel.h"
-#include "Preferences.h"
-
-#include "Song.h"
 
 using std::string;
 using std::cout;
