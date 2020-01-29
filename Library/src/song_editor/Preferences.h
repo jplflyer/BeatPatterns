@@ -31,6 +31,11 @@ protected:
     std::string		libraryPath;
 
     /**
+     * Default editor's name for new maps.
+     */
+    std::string		levelAuthorName = "Your Name Here";
+
+    /**
      * The history of things we've loaded in the past.
      */
     StringVector history;
@@ -43,6 +48,7 @@ protected:
 
     Preferences();
     void load();
+    void loadPatterns(const std::string &fromDir);
     void _save() const;
     void _pushHistory(const std::string &dirName);
 
@@ -56,6 +62,7 @@ public:
     static std::string & getHomeDirectory() { return getSingleton()->homeDir; }
     static std::string & getConfigFileName() { return getSingleton()->configFileName; }
     static Pattern_Vec & getPatterns() { return getSingleton()->patterns; }
+    static std::string & getLevelAuthorName() { return getSingleton()->levelAuthorName; }
 
     static void setLibraryPath(const std::string &value) { getSingleton()->libraryPath = value; }
     static void addHistory(const std::string &dirName) { getSingleton()->_pushHistory(dirName); }

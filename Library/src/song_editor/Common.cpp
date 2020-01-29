@@ -13,6 +13,7 @@ std::string levelDifficultyToString(LevelDifficulty ld) {
         case LevelDifficulty::Hard: return "Hard";
         case LevelDifficulty::Expert: return "Expert";
         case LevelDifficulty::ExpertPlus: return "ExpertPlus";
+        case LevelDifficulty::All: return "All";
     }
     // Won't get here.
     return "Easy";
@@ -24,6 +25,7 @@ LevelDifficulty toLevelDifficulty(const std::string &str) {
     if (str == "Hard") return LevelDifficulty::Hard;
     if (str == "Expert") return LevelDifficulty::Expert;
     if (str == "ExpertPlus") return LevelDifficulty::ExpertPlus;
+    if (str == "All") return LevelDifficulty::All;
 
     // Better not get here.
     return LevelDifficulty::Easy;

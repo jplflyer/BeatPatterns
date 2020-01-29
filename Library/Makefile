@@ -37,9 +37,9 @@ SP_SRC_DIR=${SRCDIR}/showpage
 SE_SRC_DIR=${SRCDIR}/song_editor
 
 VPATH := ${SRCDIR}:${SP_SRC_DIR}:${SE_SRC_DIR}:${TEST_SRC}
-CXXFLAGS := -I/usr/local/include -I./include -std=c++14 -g -Wno-unused-local-typedefs -Wno-deprecated-declarations
+CXXFLAGS := -I/usr/local/include -I./include -Isrc -std=c++14 -g -Wno-unused-local-typedefs -Wno-deprecated-declarations
 LDFLAGS_MIN := -lpthread -lstdc++ -lm -ldl
-LDFLAGS := -L. -L./lib -lz -llog4cplus -lcrossguid -lcppunit -lboost_system -lboost_thread -luuid -lpthread -lstdc++ -lm -ldl
+LDFLAGS := -L. -L./lib -lsfml-audio -lsfml-system -lz -llog4cplus -lcrossguid -lcppunit -lboost_system -lboost_thread -lboost_filesystem -luuid -lpthread -lstdc++ -lm -ldl
 
 SRCS = $(shell find . -name "*.cpp" -print)
 SRCS_NODIR = $(notdir ${SRCS})
@@ -64,11 +64,13 @@ endif
 
 INSTALL_BASE=/usr/local
 
+PROGRAMS=SongEditor
+
 #======================================================================
 # Top-level targets.
 #======================================================================
 .PHONY: all
-all: directories ${LIB}
+all: directories ${LIB} ${PROGRAMS}
 
 Makefile: ;
 
@@ -126,6 +128,12 @@ include ${INCLUDELIST}
 ${LIB}: ${LIB_OBJ}
 	ar ${LIB_ARGS} ${LIB} ${LIB_OBJ}
 	ranlib ${LIB}
+
+#======================================================================
+# The CLI
+#======================================================================
+SongEditor: ${OBJDIR}/CLI-Main.o ${LIB}
+	$(CXX) ${OBJDIR}/CLI-Main.o -L. -l${LIBNAME} ${LDFLAGS} $(OUTPUT_OPTION)
 
 #======================================================================
 # Installation.

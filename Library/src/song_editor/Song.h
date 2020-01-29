@@ -141,10 +141,10 @@ public:
     int previewDuration = 10;
     std::string songFilename;
     std::string coverImageFilename;
-    std::string environmentName;
+    std::string environmentName = "DefaultEnvironment";
 
     // This is the customData section.
-    std::string editor;
+    std::string editor = "SongEditor For Mac";
 
     // customData.editorSettings.modSettings.customColors  section
     bool customColorsEnabled = false;
@@ -222,6 +222,8 @@ public:
     SongDifficulty *	getDifficulty(LevelDifficulty difficulty);
     SongDifficulty *	createDifficulty(LevelDifficulty difficulty);
     SongBeatmapData *	getBeatmap(const std::string & filename);
+
+    void setLoadedFrom(const std::string &value) { loadedFrom = value; }
 };
 
 }

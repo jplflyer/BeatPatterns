@@ -23,7 +23,7 @@ const int NoteDirection_DownRight = 7;
 const int NoteDirection_None = 8;
 
 /** This matches difficulty levels inside Beast Saber. */
-enum class LevelDifficulty { Easy, Normal, Hard, Expert, ExpertPlus};
+enum class LevelDifficulty { Easy, Normal, Hard, Expert, ExpertPlus, All};
 std::string levelDifficultyToString(LevelDifficulty);
 LevelDifficulty toLevelDifficulty(const std::string &);
 
