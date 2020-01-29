@@ -93,6 +93,11 @@ CLI::run() {
         return;
     }
 
+    if (update) {
+        doUpdate();
+        return;
+    }
+
     if (FileUtilities::exists(songFilePath)) {
         song.open(songFilePath);
     }
@@ -142,39 +147,66 @@ CLI::doCreate() {
 
     // Create the Library directory
     string dir = Preferences::getLibraryPath() + "/" + songFilePath;
-    cout << "Create directory: " << dir << endl;
     FileUtilities::makeDirectoryPath(dir);
 
     song.setLoadedFrom(dir);
 
-    // Copy the song.ogg into place.
-    boost::filesystem::path songInputPath(song.info.songFilename);
-    song.info.songFilename = songInputPath.filename().string();
-
-    boost::filesystem::path songOutputPath ( dir + "/" + song.info.songFilename );
-
-    cout << "Song File Path: " << songFilePath << endl;
-    cout << "Copy " << songInputPath.string() << " to " << songOutputPath.string() << endl;
-    boost::filesystem::copy_file(songInputPath, songOutputPath.string());
-
-    song.info.levelAuthorName = Preferences::getLevelAuthorName();
-
-    // Copy the cover image into place.
-    if (song.info.coverImageFilename.length() > 0) {
-        boost::filesystem::path coverInputPath(song.info.coverImageFilename);
-        boost::filesystem::path coverOutputPath ( dir + "/" + coverInputPath.filename().string());
-        cout << "Copy " << coverInputPath.string() << " to " << coverOutputPath.string() << endl;
-        boost::filesystem::copy_file(coverInputPath, coverOutputPath);
-        song.info.coverImageFilename = coverInputPath.filename().string();
-    }
 
     //
-    cout << "song.save()\n";
+    doUpdate();
+}
+
+/**
+ * Perform an update.
+ */
+void
+CLI::doUpdate() {
+    string newName;
+
+    //----------------------------------------------------------------------
+    // If this is a new, or if they're putting in a new song file, they'll
+    // have specified a path, and we'll do a copy.
+    //----------------------------------------------------------------------
+    newName = copyIfNecessary(song.info.songFilename);
+    if (newName.length() > 0) {
+        song.info.songFilename = newName;
+    }
+
+    //----------------------------------------------------------------------
+    // Do we need to copy the cover art?
+    //----------------------------------------------------------------------
+    newName = copyIfNecessary(song.info.coverImageFilename);
+    if (newName.length() > 0) {
+        song.info.coverImageFilename = newName;
+    }
+
+    //----------------------------------------------------------------------
+    // Perform a save.
+    //----------------------------------------------------------------------
     song.save();
 }
 
 void
 CLI::doGenerate() {
 }
+
+/**
+ * Copy a file only if it seems necessary. If we do, then we return the bare name.
+ * So we can tell a copy happened if the return value has length > 0.
+ */
+std::string
+CLI::copyIfNecessary(const std::string & fromName) {
+    string retVal;
+    boost::filesystem::path inputPath(fromName);
+    if (boost::filesystem::exists(inputPath)) {
+        retVal = inputPath.filename().string();
+
+        boost::filesystem::path outputPath ( song.getLoadedFrom() + "/" + retVal );
+        boost::filesystem::copy_file(inputPath, outputPath);
+    }
+
+    return retVal;
+}
+
 
 } // namespace SongEditor

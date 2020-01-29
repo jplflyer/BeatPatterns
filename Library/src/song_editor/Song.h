@@ -224,6 +224,7 @@ public:
     SongBeatmapData *	getBeatmap(const std::string & filename);
 
     void setLoadedFrom(const std::string &value) { loadedFrom = value; }
+    const std::string &getLoadedFrom() { return loadedFrom; }
 };
 
 }
