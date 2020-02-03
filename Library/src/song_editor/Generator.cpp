@@ -25,6 +25,13 @@ static double randomValue(double a, double b) {
 Generator::Generator(Song &_song, SongDifficulty &_difficulty, SongBeatmapData &_data)
     : song(_song), difficulty(_difficulty), beatmapData(_data)
 {
+    Preferences::DifficultyDefaults & difficultyDefaults = Preferences::getDifficultyDefaults(difficulty.difficulty);
+
+    minimumInitialWhitespace = difficultyDefaults.minimumInitialWhitespace;
+    minimumDelayBetweenPatterns = difficultyDefaults.minimumDelayBetweenPatterns;
+    maximumDelayBetweenPatterns = difficultyDefaults.maximumDelayBetweenPatterns;
+
+    song.fixBeatDuration();
 }
 
 /**
@@ -40,16 +47,15 @@ void Generator::generateEntireSong() {
     double beatNumber = std::ceil(timeOfFirstNote / song.beatDurationSeconds);
     double currentTime = beatNumber * song.beatDurationSeconds;
     double remainingDuration = song.duration - currentTime;
-    int nextIndex = 0;
 
     lastNoteBeat = 0.0;
     blueSaberLocation.resetBlue();
     redSaberLocation.resetRed();
 
     while (remainingDuration > 0.5) {
-        int index = pickAndApplyPattern(beatmapData, nextIndex, beatNumber, remainingDuration);
+        pickAndApplyPattern(beatmapData, -1, beatNumber, remainingDuration);
 
-        SongBeatmapData::Note & mostRecentNote = *beatmapData.notes.at(index);
+        SongBeatmapData::Note & mostRecentNote = *beatmapData.notes.back();
 
         // Start time of the next pattern.
         // This doesn't support patternSnapTo yet.
@@ -58,7 +64,6 @@ void Generator::generateEntireSong() {
 
         currentTime = beatNumber * song.beatDurationSeconds;
         remainingDuration = song.duration - currentTime;
-        nextIndex = index + 1;
     }
 }
 
@@ -122,8 +127,13 @@ Generator::pickAndApplyPattern(SongBeatmapData &output, int atIndex, double beat
             newNote->lineIndex = lineIndex + note.relativeX;
             newNote->lineLayer = lineLayer + note.relativeY;
 
-            beatmapData.notes.insert(position++, newNote);
-            ++atIndex;
+            if (atIndex == -1) {
+                beatmapData.notes.push_back(newNote);
+            }
+            else {
+                beatmapData.notes.insert(position++, newNote);
+                ++atIndex;
+            }
         }
 
         // Set to the next location.

@@ -35,6 +35,8 @@ int
 Song::open(const std::string fromLocation) {
     close();
 
+    cout << "Opening song from " << fromLocation << endl;
+
     boost::filesystem::path path(fromLocation);
 
     if (! boost::filesystem::is_directory(path)) {
@@ -56,7 +58,7 @@ Song::open(const std::string fromLocation) {
         boost::filesystem::path childPath = dir_itr->path();
 
         if (childPath.filename().string() == "info.dat") {
-            cout << " Must load info from: " << childPath.string() << endl;
+            cout << "Must load info from: " << childPath.string() << endl;
             info.load(childPath.string());
             didIt = true;
             break;
@@ -64,6 +66,7 @@ Song::open(const std::string fromLocation) {
     }
 
     if (!didIt) {
+        cout << "Never found an info.date.\n";
         return -1;
     }
 
@@ -83,15 +86,21 @@ Song::open(const std::string fromLocation) {
     }
 
     if (info.songFilename.length() > 0) {
+        cout << "music.openFromFile( " << dirName + "/" + info.songFilename << " )\n";
         music.openFromFile(dirName + "/" + info.songFilename);
         duration = static_cast<double>(music.getDuration().asSeconds());
     }
 
-    beatDurationSeconds = 60.0 / info.beatsPerMinute;
+    fixBeatDuration();
 
     isOpen = true;
 
     return 0;
+}
+
+void
+Song::fixBeatDuration() {
+    beatDurationSeconds = 60.0 / info.beatsPerMinute;
 }
 
 /**
@@ -181,6 +190,10 @@ Song::createDifficulty(LevelDifficulty difficulty) {
     sd->beatmapFilename = levelDifficultyToString(difficulty) + ".dat";
 
     info.difficultySets.at(0)->difficulties.push_back(sd);
+
+    SongBeatmapData * beatmapData = new SongBeatmapData();
+    beatmapDataMap[sd->beatmapFilename] = beatmapData;
+
 
     return sd;
 }

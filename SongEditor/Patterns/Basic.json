@@ -1,6 +1,6 @@
 [
 	{
-		"name": "Blue Down Slice",
+		"name": "Blue Down",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
 		"startingLocations": [
@@ -24,13 +24,33 @@
 		]
 	},
 	{
-		"name": "Red Down Slice",
+		"name": "Red Down",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
-		"transformation": { "patternName": "Blue Down Slice", "swapColors": true, "mirrorLeftRight": true }
+		"transformation": { "patternName": "Blue Down", "swapColors": true, "mirrorLeftRight": true }
 	},
 	{
-		"name": "Blue Up Slice",
+		"name": "Blue Down High Outside",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 0, "normal": 10, "hard": 100, "expert": 200, "expertPlus": 200},
+		"startingLocations": [
+			{ "lineIndex": 0, "lineLayer": 2},
+			{ "lineIndex": 3, "lineLayer": 2}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Down"}
+			]
+		]
+	},
+	{
+		"name": "Red Down High Outside",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 0, "normal": 10, "hard": 100, "expert": 200, "expertPlus": 200},
+		"transformation": { "patternName": "Blue Down High Outside", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Up",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
 		"startingLocations": [
@@ -54,13 +74,13 @@
 		]
 	},
 	{
-		"name": "Red Up Slice",
+		"name": "Red Up",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
-		"transformation": { "patternName": "Blue Up Slice", "swapColors": true, "mirrorLeftRight": true }
+		"transformation": { "patternName": "Blue Up", "swapColors": true, "mirrorLeftRight": true }
 	},
 	{
-		"name": "Blue Right Slice",
+		"name": "Blue Right",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
 		"startingLocations": [
@@ -84,13 +104,13 @@
 		]
 	},
 	{
-		"name": "Red Left Slice",
+		"name": "Red Left",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
-		"transformation": { "patternName": "Blue Right Slice", "swapColors": true, "mirrorLeftRight": true }
+		"transformation": { "patternName": "Blue Right", "swapColors": true, "mirrorLeftRight": true }
 	},
 	{
-		"name": "Blue Left Slice",
+		"name": "Blue Left",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
 		"startingLocations": [
@@ -114,10 +134,10 @@
 		]
 	},
 	{
-		"name": "Red Right Slice",
+		"name": "Red Right",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
-		"transformation": { "patternName": "Blue Left Slice", "swapColors": true, "mirrorLeftRight": true }
+		"transformation": { "patternName": "Blue Left", "swapColors": true, "mirrorLeftRight": true }
 	},
 	{
 		"name": "Blue Up/Down",
@@ -242,5 +262,54 @@
 		"difficulty": "Easy",
 		"useWeights": { "easy": 200, "normal": 300, "hard": 400, "expert": 300, "expertPlus": 300},
 		"transformation": { "patternName": "Blue/Red Up", "swapColors": true, "mirrorLeftRight": false }
+	},
+	{
+		"name": "Blue Up/Red Down",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"startingLocations": [
+			{ "lineIndex": 1, "lineLayer": 0},
+			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
+
+			{ "lineIndex": 0, "lineLayer": 1, "preferred": true},
+			{ "lineIndex": 3, "lineLayer": 1, "preferred": true}
+		],
+		"noteSequence": [
+			[
+				{ "cubeType": "Blue", "cutDirection": "Up"},
+				{ "cubeType": "Red", "cutDirection": "Down", "relativeX": -1}
+			]
+		]
+	},
+	{
+		"name": "Red Up/Blue Down",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"transformation": { "patternName": "Blue Up/Red Down", "swapColors": true, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Down/Blue Up",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"transformation": { "patternName": "Blue Up/Red Down", "swapColors": false, "swapUpDown": true }
+	},
+	{
+		"name": "Red Down/Blue Up",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"transformation": { "patternName": "Blue Up/Red Down", "swapColors": true, "mirrorLeftRight": true, "swapUpDown": true }
+	},
+	{
+		"name": "Blue Up/Red Down Reversed",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"transformation": { "patternName": "Blue Up/Red Down", "swapColors": false, "mirrorLeftRight": true }
+	},
+	{
+		"name": "Blue Down/Red Up Reversed",
+		"difficulty": "Medium",
+		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"transformation": { "patternName": "Blue Up/Red Down", "swapColors": false, "mirrorLeftRight": true, "swapUpDown": true }
 	}
 ]

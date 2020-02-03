@@ -225,6 +225,8 @@ public:
 
     void setLoadedFrom(const std::string &value) { loadedFrom = value; }
     const std::string &getLoadedFrom() { return loadedFrom; }
+
+    void fixBeatDuration();
 };
 
 }

@@ -6,6 +6,7 @@
 
 #include "CLI.h"
 #include "Preferences.h"
+#include "Generator.h"
 
 using std::cout;
 using std::cerr;
@@ -25,6 +26,8 @@ CLI::CLI() {
  */
 void
 CLI::parseArgs(int argc, char **argv) {
+    levelAuthorName = Preferences::getLevelAuthorName();
+
     const char * progName = argv[0];
     OptionHandler::Argument args[] = {
         // Global or semi-global
@@ -32,16 +35,18 @@ CLI::parseArgs(int argc, char **argv) {
 
         { "init",       no_argument, [=](const char *) { init = true; } },
 
-        // Specific to --new
+        // Specific to --new or --update
         { "new",        no_argument, [=](const char *) { createNew = true; } },
-        { "ogg",        required_argument, [=](const char *arg) { song.info.songFilename = arg; } },
-        { "name",		required_argument, [=](const char *arg) { song.info.songName = arg; } },
-        { "artist",		required_argument, [=](const char *arg) { song.info.songAuthorName = arg; } },
-        { "bpm",		required_argument, [=](const char *arg) { song.info.beatsPerMinute = atoi(arg); } },
-        { "cover-image",required_argument, [=](const char *arg) { song.info.coverImageFilename = arg; } },
+        { "update",     no_argument, [=](const char *) { update = true; } },
+        { "ogg",        required_argument, [=](const char *arg) { songFilename = arg; } },
+        { "name",		required_argument, [=](const char *arg) { songName = arg; } },
+        { "artist",		required_argument, [=](const char *arg) { artist = arg; } },
+        { "level-by",	required_argument, [=](const char *arg) { levelAuthorName = arg; } },
+        { "bpm",		required_argument, [=](const char *arg) { bpm = atoi(arg); } },
+        { "cover-image",required_argument, [=](const char *arg) { coverImageFilename = arg; } },
 
         // Specific to --generate
-        { "generate",   no_argument, [=](const char *) { createNew = true; }},
+        { "generate",   no_argument, [=](const char *) { generate = true; }},
         { "difficulty", required_argument, [=](const char *arg) { difficulty = toLevelDifficulty(arg); }},
         {nullptr}
     };
@@ -50,6 +55,8 @@ CLI::parseArgs(int argc, char **argv) {
     vec.addAll(args);
 
     OptionHandler::handleOptions(argc, argv, vec, [=]() { usage(progName); exit(0); } );
+
+    cout << "Level author name: " << levelAuthorName << endl;
 }
 
 /**
@@ -66,6 +73,7 @@ CLI::usage(const char *progName) {
          << " --song directory     Path to the song.egg file.\n"
          << "\n"
          << " --new                Start a new song map.\n"
+         << " --update             Update an existing map, applying changes from the below list.\n"
          << " --ogg song.ogg       Location of the .ogg song file to copy into the --song output directory."
          << " --name name of song  The name of the song.\n"
          << " --artist Artist Name The name of the song's artist.\n"
@@ -90,26 +98,30 @@ CLI::run() {
 
     if (createNew) {
         doCreate();
-        return;
-    }
-
-    if (update) {
-        doUpdate();
-        return;
     }
 
     if (FileUtilities::exists(songFilePath)) {
-        song.open(songFilePath);
+        if (song.open(songFilePath) != 0) {
+            cout << "Song failed to open. Exiting.\n";
+            exit(1);
+        }
     }
     else {
-        string tryPath = Preferences::getLibraryPath() + songFilePath;
+        string tryPath = Preferences::getLibraryPath() + "/" + songFilePath;
         if ( FileUtilities::exists(tryPath)) {
-            song.open(tryPath);
+            if (song.open(tryPath) != 0) {
+                cout << "Song failed to open. Exiting.\n";
+                exit(1);
+            }
         }
         else {
             cerr << "Cannot find your song in either " << songFilePath << " or " << tryPath << endl;
             exit(1);
         }
+    }
+
+    if (update) {
+        doUpdate();
     }
 
     if (generate) {
@@ -163,11 +175,26 @@ void
 CLI::doUpdate() {
     string newName;
 
+    cout << "Doing update...\n";
+
+    if (songName.length() > 0) {
+        song.info.songName = songName;
+    }
+    if (levelAuthorName.length() > 0) {
+        song.info.levelAuthorName = levelAuthorName;
+    }
+    if (artist.length() > 0) {
+        song.info.songAuthorName = artist;
+    }
+    if (bpm > 0) {
+        song.info.beatsPerMinute = bpm;
+    }
+
     //----------------------------------------------------------------------
     // If this is a new, or if they're putting in a new song file, they'll
     // have specified a path, and we'll do a copy.
     //----------------------------------------------------------------------
-    newName = copyIfNecessary(song.info.songFilename);
+    newName = copyIfNecessary(songFilename);
     if (newName.length() > 0) {
         song.info.songFilename = newName;
     }
@@ -175,7 +202,7 @@ CLI::doUpdate() {
     //----------------------------------------------------------------------
     // Do we need to copy the cover art?
     //----------------------------------------------------------------------
-    newName = copyIfNecessary(song.info.coverImageFilename);
+    newName = copyIfNecessary(coverImageFilename);
     if (newName.length() > 0) {
         song.info.coverImageFilename = newName;
     }
@@ -184,11 +211,49 @@ CLI::doUpdate() {
     // Perform a save.
     //----------------------------------------------------------------------
     song.save();
+    cout << "Update done\n";
 }
 
 void
 CLI::doGenerate() {
+    cout << "Doing generate.\n";
+    if (difficulty == LevelDifficulty::All) {
+        doGenerateFor(LevelDifficulty::Easy);
+        doGenerateFor(LevelDifficulty::Normal);
+        doGenerateFor(LevelDifficulty::Hard);
+        doGenerateFor(LevelDifficulty::Expert);
+        doGenerateFor(LevelDifficulty::ExpertPlus);
+    }
+    else {
+        doGenerateFor(difficulty);
+    }
+
+    song.save();
 }
+
+void CLI::doGenerateFor(LevelDifficulty thisDifficulty) {
+    cout << "Generate for difficulty: " << thisDifficulty << endl;
+
+    SongDifficulty * songDifficulty = song.getDifficulty(thisDifficulty);
+    SongBeatmapData * beatmapData = song.getBeatmap(songDifficulty->beatmapFilename);
+
+    if (songDifficulty == nullptr) {
+        cout << "Null songDifficulty.\n";
+        exit(1);
+    }
+    if (beatmapData == nullptr) {
+        cout << "Null beatmapData.\n";
+        exit(1);
+    }
+
+    cout << "Create the generator.\n";
+    Generator generator(song, *songDifficulty, *beatmapData);
+    cout << "Run the generator.\n";
+    generator.generateEntireSong();
+
+    cout << "Generate done for difficulty: " << thisDifficulty << endl;
+}
+
 
 /**
  * Copy a file only if it seems necessary. If we do, then we return the bare name.
@@ -202,7 +267,8 @@ CLI::copyIfNecessary(const std::string & fromName) {
         retVal = inputPath.filename().string();
 
         boost::filesystem::path outputPath ( song.getLoadedFrom() + "/" + retVal );
-        boost::filesystem::copy_file(inputPath, outputPath);
+        cout << "Copy from " << inputPath << " to " << outputPath << endl;
+        boost::filesystem::copy_file(inputPath.string(), outputPath.string(), boost::filesystem::copy_option::overwrite_if_exists);
     }
 
     return retVal;

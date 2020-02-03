@@ -164,6 +164,11 @@ Preferences::fromJSON(const nlohmann::json &json) {
             history.push_back(new string(str));
         }
     }
+
+    nlohmann::json difficultyDefaultsJSON = jsonValue(json, "difficultyDefaults");
+    if (!difficultyDefaultsJSON.is_null()) {
+        difficultyDefaults.fromJSON(difficultyDefaultsJSON);
+    }
 }
 
 void
@@ -176,7 +181,68 @@ Preferences::toJSON(nlohmann::json &json) const {
         historyJson.push_back(*str);
     }
 
+    nlohmann::json difficultyDefaultsJSON = nlohmann::json::array();
+    difficultyDefaults.toJSON(difficultyDefaultsJSON);
+
     json["history"] = historyJson;
+    json["difficultyDefaults"] = difficultyDefaultsJSON;
+}
+
+/**
+ * Get the preferences for this difficulty level.
+ */
+Preferences::DifficultyDefaults &
+Preferences::getDifficultyDefaults(LevelDifficulty difficulty) {
+    return getSingleton()->getOrBuildDifficultyDefaults(difficulty);
+}
+
+/**
+ * Get the preferences for this difficulty level, building it if necessary.
+ */
+Preferences::DifficultyDefaults &
+Preferences::getOrBuildDifficultyDefaults(LevelDifficulty difficulty) {
+    DifficultyDefaults * dd = difficultyDefaults.find(difficulty);
+    if (dd == nullptr) {
+        dd = new DifficultyDefaults();
+        dd->difficulty = difficulty;
+        difficultyDefaults.push_back(dd);
+    }
+    return *dd;
+}
+
+//======================================================================
+// Our defaults for each difficulty level.
+//======================================================================
+
+void Preferences::DifficultyDefaults::fromJSON(const JSON & json) {
+    difficulty = toLevelDifficulty(stringValue(json, "difficulty"));
+    minimumInitialWhitespace = doubleValue(json, "minimumInitialWhitespace");
+    minimumDelayBetweenPatterns = doubleValue(json, "minimumDelayBetweenPatterns");
+    maximumDelayBetweenPatterns = doubleValue(json, "maximumDelayBetweenPatterns");
+}
+
+void Preferences::DifficultyDefaults::toJSON(JSON & json) const {
+    json["difficulty"] = levelDifficultyToString(difficulty);
+    json["minimumInitialWhitespace"] = minimumInitialWhitespace;
+    json["minimumDelayBetweenPatterns"] = minimumDelayBetweenPatterns;
+    json["maximumDelayBetweenPatterns"] = maximumDelayBetweenPatterns;
+}
+
+/**
+ * Search. If not found, return the values for All.
+ */
+Preferences::DifficultyDefaults *
+Preferences::DifficultyDefaults_Vec::find(LevelDifficulty difficulty) {
+    for (DifficultyDefaults *dd: *this) {
+        if (dd->difficulty == difficulty) {
+            return dd;
+        }
+    }
+
+    if (difficulty != LevelDifficulty::All) {
+        return find(LevelDifficulty::All);
+    }
+    return nullptr;
 }
 
 

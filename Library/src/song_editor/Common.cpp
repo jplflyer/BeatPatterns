@@ -31,6 +31,13 @@ LevelDifficulty toLevelDifficulty(const std::string &str) {
     return LevelDifficulty::Easy;
 }
 
+std::ostream &
+operator<<(std::ostream & os, const LevelDifficulty& levelDifficulty) {
+    os << levelDifficultyToString(levelDifficulty);
+    return os;
+}
+
+
 std::string patternDifficultyToString(PatternDifficulty pd) {
     switch(pd) {
         case PatternDifficulty::Easy: return "Easy";
@@ -49,6 +56,12 @@ PatternDifficulty toPatternDifficulty(const std::string &str) {
 
     // Better not get here.
     return PatternDifficulty::Easy;
+}
+
+std::ostream &
+operator<<(std::ostream & os, const PatternDifficulty & value) {
+    os << patternDifficultyToString(value);
+    return os;
 }
 
 std::string cubeTypeToString(CubeType ct) {
@@ -90,6 +103,12 @@ CubeType swapCubeType(CubeType cubeType) {
     }
     // Shouldn't happen.
     return cubeType;
+}
+
+std::ostream &
+operator<<(std::ostream & os, const CubeType & value) {
+    os << cubeTypeToString(value);
+    return os;
 }
 
 //======================================================================
@@ -148,10 +167,27 @@ CutDirection toCutDirection(const std::string &str) {
     return CutDirection::Down;
 }
 
-/**
- * This function does a left/right mirror.
- */
-CutDirection mirrorCutDirection(CutDirection cutDirection) {
+CutDirection mirrorUpDown(CutDirection cutDirection) {
+    switch(cutDirection) {
+        // These don't mirror up/down.
+        case CutDirection::Left:
+        case CutDirection::Right:
+        case CutDirection::Center: return cutDirection;
+
+        // These all mirror.
+        case CutDirection::Up:			return CutDirection::Down;
+        case CutDirection::Down:		return CutDirection::Up;
+        case CutDirection::UpLeft:		return CutDirection::DownLeft;
+        case CutDirection::UpRight:		return CutDirection::DownRight;
+        case CutDirection::DownLeft:	return CutDirection::UpLeft;
+        case CutDirection::DownRight:	return CutDirection::UpRight;
+    }
+
+    // Shouldn't happen.
+    return cutDirection;
+}
+
+CutDirection mirrorLeftRight(CutDirection cutDirection) {
     switch(cutDirection) {
         // These don't mirror.
         case CutDirection::Up:
@@ -171,5 +207,23 @@ CutDirection mirrorCutDirection(CutDirection cutDirection) {
     return cutDirection;
 }
 
+/**
+ * This function does a left/right mirror.
+ */
+CutDirection mirrorCutDirection(CutDirection cutDirection, bool doLeftRight, bool doUpDown) {
+    if (doLeftRight) {
+        cutDirection = mirrorLeftRight(cutDirection);
+    }
+    if (doUpDown) {
+        cutDirection = mirrorUpDown(cutDirection);
+    }
+    return cutDirection;
+}
+
+std::ostream &
+operator<<(std::ostream & os, const CutDirection & value) {
+    os << cutDirectionToString(value);
+    return os;
+}
 
 } // namespace SongEditor

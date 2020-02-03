@@ -13,6 +13,23 @@ namespace SongEditor {
 
 class Preferences: public JSON_Serializable
 {
+public:
+    class DifficultyDefaults: public JSON_Serializable {
+    public:
+        LevelDifficulty difficulty = LevelDifficulty::All;
+        double	minimumInitialWhitespace = 4.0;
+        double	minimumDelayBetweenPatterns = 0.05;
+        double	maximumDelayBetweenPatterns = 4.0;
+
+        void fromJSON(const nlohmann::json & json);
+        void toJSON(nlohmann::json & json) const;
+    };
+
+    class DifficultyDefaults_Vec: public JSON_Serializable_PointerVector<DifficultyDefaults> {
+    public:
+        DifficultyDefaults * find(LevelDifficulty difficulty);
+    };
+
 protected:
     static Preferences * s_singleton;
 
@@ -46,11 +63,14 @@ protected:
     Pattern_Vec patterns;
     std::map<std::string, Pattern *> patternsMap;
 
+    DifficultyDefaults_Vec difficultyDefaults;
+
     Preferences();
     void load();
     void loadPatterns(const std::string &fromDir);
     void _save() const;
     void _pushHistory(const std::string &dirName);
+    DifficultyDefaults & getOrBuildDifficultyDefaults(LevelDifficulty difficulty);
 
 public:
     static Preferences * getSingleton();
@@ -63,6 +83,8 @@ public:
     static std::string & getConfigFileName() { return getSingleton()->configFileName; }
     static Pattern_Vec & getPatterns() { return getSingleton()->patterns; }
     static std::string & getLevelAuthorName() { return getSingleton()->levelAuthorName; }
+
+    static DifficultyDefaults & getDifficultyDefaults(LevelDifficulty difficulty);
 
     static void setLibraryPath(const std::string &value) { getSingleton()->libraryPath = value; }
     static void addHistory(const std::string &dirName) { getSingleton()->_pushHistory(dirName); }

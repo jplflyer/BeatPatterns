@@ -1,6 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <iostream>
 #include <string>
 
 //
@@ -26,11 +27,13 @@ const int NoteDirection_None = 8;
 enum class LevelDifficulty { Easy, Normal, Hard, Expert, ExpertPlus, All};
 std::string levelDifficultyToString(LevelDifficulty);
 LevelDifficulty toLevelDifficulty(const std::string &);
+std::ostream & operator<<(std::ostream & os, const LevelDifficulty& levelDifficulty);
 
 /** This is simply used for how difficult a particular pattern is. */
 enum class PatternDifficulty { Easy, Medium, Hard};
 std::string patternDifficultyToString(PatternDifficulty);
 PatternDifficulty toPatternDifficulty(const std::string &);
+std::ostream & operator<<(std::ostream & os, const PatternDifficulty& patternDifficulty);
 
 /** The types of things we can place on the page in a specific cell. */
 enum class CubeType {
@@ -42,7 +45,7 @@ std::string cubeTypeToString(CubeType);
 int cubeTypeToInt(CubeType);
 CubeType toCubeType(const std::string &);
 CubeType swapCubeType(CubeType);
-
+std::ostream & operator<<(std::ostream & os, const CubeType & value);
 
 /** Cut directions */
 enum class CutDirection {
@@ -52,7 +55,8 @@ std::string cutDirectionToString(CutDirection);
 int cutDirectionToInt(CutDirection);
 CutDirection toCutDirection(const std::string &);
 
-CutDirection mirrorCutDirection(CutDirection);
+CutDirection mirrorCutDirection(CutDirection, bool mirrorLeftRight = true, bool mirrorUpDown = false);
+std::ostream & operator<<(std::ostream & os, const CutDirection & value);
 
 } // namespace SongEditor;
 

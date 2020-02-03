@@ -39,7 +39,7 @@ SE_SRC_DIR=${SRCDIR}/song_editor
 VPATH := ${SRCDIR}:${SP_SRC_DIR}:${SE_SRC_DIR}:${TEST_SRC}
 CXXFLAGS := -I/usr/local/include -I./include -Isrc -std=c++14 -g -Wno-unused-local-typedefs -Wno-deprecated-declarations
 LDFLAGS_MIN := -lpthread -lstdc++ -lm -ldl
-LDFLAGS := -L. -L./lib -lsfml-audio -lsfml-system -lz -llog4cplus -lcrossguid -lcppunit -lboost_system -lboost_thread -lboost_filesystem -luuid -lpthread -lstdc++ -lm -ldl
+LDFLAGS := -L. -L./lib -lsfml-audio -lsfml-system -lz -llog4cplus -lcrossguid -lcppunit -lboost_filesystem -lboost_system -lboost_thread -luuid -lpthread -lstdc++ -lm -ldl
 
 SRCS = $(shell find . -name "*.cpp" -print)
 SRCS_NODIR = $(notdir ${SRCS})

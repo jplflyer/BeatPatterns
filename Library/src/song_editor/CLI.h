@@ -14,6 +14,12 @@ class CLI
 {
 private:
     std::string		songFilePath;		// Path to where this is stored
+    std::string		songFilename;		// Where to get the song file from.
+    std::string		songName;			// Name of the song.
+    std::string		artist;				// Artist.
+    std::string		levelAuthorName;	// Person who create the level.
+    std::string		coverImageFilename;	// Cover image jpg.
+    int				bpm = 0;
 
     LevelDifficulty	difficulty = LevelDifficulty::All;
 
@@ -29,6 +35,7 @@ private:
     void doCreate();
     void doUpdate();
     void doGenerate();
+    void doGenerateFor(LevelDifficulty thisDifficulty);
 
     std::string copyIfNecessary(const std::string & from);
 

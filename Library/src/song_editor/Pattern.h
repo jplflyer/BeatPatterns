@@ -1,6 +1,7 @@
 #ifndef PATTERN_H
 #define PATTERN_H
 
+#include <iostream>
 #include <vector>
 #include <map>
 
@@ -110,6 +111,8 @@ public:
     void toJSON(nlohmann::json & json) const;
 };
 
+std::ostream& operator<<(std::ostream &, const Location &);
+
 /**
  * A set of locations, probably used for starting locations.
  */
@@ -133,6 +136,9 @@ public:
 
     /** Do we swap everything left-for-right. This means locations and cut directions. */
     bool			mirrorLeftRight = false;
+
+    /** This swaps arrow directions from upwards to downwards but does not adjust locations. */
+    bool			swapUpDown = false;
 
     /** When we set this, the pattern keeps the cubes of the original but then
      * ALSO does a color & mirror, so it's a merge of the original pattern

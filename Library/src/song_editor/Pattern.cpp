@@ -88,6 +88,7 @@ Pattern::getWeight(LevelDifficulty forDifficulty) const {
         case LevelDifficulty::Hard: return useWeights.hard;
         case LevelDifficulty::Expert: return useWeights.expert;
         case LevelDifficulty::ExpertPlus: return useWeights.expertPlus;
+        case LevelDifficulty::All: return useWeights.easy;
     }
     return useWeights.easy;
 }
@@ -105,37 +106,48 @@ Pattern::isTransformation() const {
  */
 Pattern *
 Pattern::getTransformation() {
+    // If we're not a transformation, then we return ourself.
+    if (transformation.patternName.length() == 0) {
+        return this;
+    }
+
     if (transformation.pattern == nullptr) {
         cout << "Our transformation pattern is missing." << endl;
         return this;
     }
 
     if (transformedPattern == nullptr) {
+        cout << "Produce transformation from " << transformation.patternName
+             << " to produce " << name
+             << (transformation.mirrorLeftRight ? " Mirror Left/Right" : "")
+             << endl;
+
         transformedPattern = new Pattern();
 
+        Pattern * fromPattern = transformation.pattern->getTransformation();
+
         // Handle the starting locations
-        for (Location &loc: transformation.pattern->startingLocations) {
+        for (Location &loc: fromPattern->startingLocations) {
             Location newLocation;
 
             newLocation.preferred = loc.preferred;
             newLocation.lineLayer = loc.lineLayer;
             newLocation.lineIndex = transformation.mirrorLeftRight ? 3 - loc.lineIndex : loc.lineIndex;
 
+            cout << "... Transform from " << loc << " to " << newLocation << endl;
+
             startingLocations.push_back(newLocation);
         }
 
         // Handle the noteSequence
-        for (NoteSet &noteSet: transformation.pattern->noteSequence) {
+        for (NoteSet &noteSet: fromPattern->noteSequence) {
             NoteSet newNoteSet;
 
             for (Note &note: noteSet) {
                 Note newNote;
 
                 newNote.cubeType = transformation.swapColors ? swapCubeType(note.cubeType) : note.cubeType;
-                newNote.cutDirection = transformation.mirrorLeftRight
-                        ? mirrorCutDirection(note.cutDirection)
-                        : newNote.cutDirection;
-
+                newNote.cutDirection = mirrorCutDirection(note.cutDirection, transformation.mirrorLeftRight, transformation.swapUpDown);
                 newNote.relativeX = transformation.mirrorLeftRight ? -note.relativeX : note.relativeX;
                 newNote.relativeY = note.relativeY;
 
@@ -285,6 +297,7 @@ void Transformation::fromJSON(const JSON & json) {
     patternName = stringValue(json, "patternName");
     swapColors = boolValue(json, "swapColors");
     mirrorLeftRight = boolValue(json, "mirrorLeftRight");
+    swapUpDown = boolValue(json, "swapUpDown");
     duplicateCubes = boolValue(json, "duplicateCubes");
 }
 
@@ -295,6 +308,7 @@ void Transformation::toJSON(JSON & json) const {
     if (swapColors) json["swapColors"] = swapColors;
     if (mirrorLeftRight) json["mirrorLeftRight"] = mirrorLeftRight;
     if (duplicateCubes) json["duplicateCubes"] = duplicateCubes;
+    if (swapUpDown) json["swapUpDown"] = swapUpDown;
 }
 
 //======================================================================
@@ -371,6 +385,11 @@ void Location::toJSON(JSON & json) const {
 
     // Don't need to write it for false.
     if (preferred) json["preferred"] = preferred;
+}
+
+std::ostream & operator<<(std::ostream &os, const Location &loc) {
+    os << "(" << loc.lineLayer << ", " << loc.lineIndex << (loc.preferred ? ", preferred)" : ")");
+    return os;
 }
 
 
