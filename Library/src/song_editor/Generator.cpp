@@ -49,8 +49,8 @@ void Generator::generateEntireSong() {
     double remainingDuration = song.duration - currentTime;
 
     lastNoteBeat = 0.0;
-    blueSaberLocation.resetBlue();
-    redSaberLocation.resetRed();
+    blueSaberLocation.reset();
+    redSaberLocation.reset();
 
     while (remainingDuration > 0.5) {
         pickAndApplyPattern(beatmapData, -1, beatNumber, remainingDuration);
@@ -147,6 +147,14 @@ Generator::pickAndApplyPattern(SongBeatmapData &output, int atIndex, double beat
 /**
  * Get the patterns we might use for the current level difficulty.
  * For now, I'm ignoring max duration.
+ *
+ * I exclude patterns that do not flow well from the current location and inertia.
+ * Rules:
+ *
+ * 	1. If a particular saber is moving in a particular direction, don't pick a
+ *		pattern with a similar initial direction below Hard level.
+ *
+ *  2. Don't pick a pattern that starts in the current location.
  */
 void
 Generator::possiblePatterns(Pattern_Vec &vec, double ) {

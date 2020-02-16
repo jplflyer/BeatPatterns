@@ -4,6 +4,7 @@
 #include "Song.h"
 #include "Pattern.h"
 #include "Preferences.h"
+#include "SaberLocation.h"
 
 namespace SongEditor {
 
@@ -110,20 +111,6 @@ namespace SongEditor {
  */
 class Generator
 {
-private:
-    /** We track the left and right saber locations after each pattern we apply,
-     * and we can use that determine a reasonable next pattern. We wouldn't want
-     * a low upslash right after a high upslash. */
-    class SaberLocation {
-    public:
-        int row = 1;
-        int col = 2;
-
-        // These methods reset where we think we are, sabers out in front, side-by-side.
-        void resetBlue() { row = 1; col = 2; }
-        void resetRed() { row = 1; col = 1; }
-    };
-
 private:
     Song &	song;
     SongDifficulty & difficulty;

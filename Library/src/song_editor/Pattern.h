@@ -179,6 +179,8 @@ public:
     Pattern * getTransformation();
 
     void getStartingLocation(int &lineLayer, int &lineIndex);
+
+    bool compatibleWithSaberLocations(SaberLocation &redLocation, SaberLocation &blueLocation);
 };
 
 class Pattern_Vec: public JSON_Serializable_PointerVector<Pattern> {

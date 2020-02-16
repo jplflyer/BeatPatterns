@@ -32,6 +32,7 @@ SOURCES += \
     src/song_editor/Generator.cpp \
     src/song_editor/Pattern.cpp \
     src/song_editor/Preferences.cpp \
+    src/song_editor/SaberLocation.cpp \
     src/song_editor/Song.cpp
 
 HEADERS += \
@@ -54,6 +55,7 @@ HEADERS += \
     src/song_editor/Generator.h \
     src/song_editor/Pattern.h \
     src/song_editor/Preferences.h \
+    src/song_editor/SaberLocation.h \
     src/song_editor/Song.h
 
 # Default rules for deployment.
