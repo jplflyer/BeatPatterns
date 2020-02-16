@@ -12,10 +12,10 @@
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include <song_editor/Preferences.h>
+#include <beat_patterns/Preferences.h>
 
 using namespace std;
-using namespace SongEditor;
+using namespace BeatPatterns;
 
 /**
  * Constructor.

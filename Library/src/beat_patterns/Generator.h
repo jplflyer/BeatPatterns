@@ -6,7 +6,7 @@
 #include "Preferences.h"
 #include "SaberLocation.h"
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 /**
  * This is our smart generator for implementing patterns in our songs. I'm going to dump a lot of info
@@ -212,6 +212,6 @@ public:
 };
 
 
-} // namespace SongEditor
+} // namespace BeatPatterns
 
 #endif // GENERATOR_H

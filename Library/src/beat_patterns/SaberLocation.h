@@ -5,7 +5,7 @@
  * and we can use that determine a reasonable next pattern. We wouldn't want
  * a low upslash right after a high upslash. */
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 class SaberLocation {
 public:
@@ -26,6 +26,6 @@ public:
     void reset() { row = 1; col = 2; dirRow = 0; dirCol = 0; }
 };
 
-} // namespace SongEditor
+} // namespace BeatPatterns
 
 #endif // SABERLOCATION_H

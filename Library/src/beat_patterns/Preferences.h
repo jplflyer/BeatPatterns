@@ -9,7 +9,7 @@
 
 #include "Pattern.h"
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 class Preferences: public JSON_Serializable
 {

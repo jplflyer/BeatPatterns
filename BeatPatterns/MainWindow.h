@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 
-#include <song_editor/Song.h>
+#include <beat_patterns/Song.h>
 #include "SetupForm.h"
 #include "SongInfoForm.h"
 #include "NotesTableForm.h"
@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 protected:
-    SongEditor::Song currentSong;
+    BeatPatterns::Song currentSong;
 
 public:
     MainWindow(QWidget *parent = nullptr);

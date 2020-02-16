@@ -13,7 +13,7 @@ using namespace std;
 
 using JSON = nlohmann::json;
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 Song * Song::currentSong = nullptr;
 

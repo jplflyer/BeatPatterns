@@ -1,6 +1,6 @@
 #include "Common.h"
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 //======================================================================
 // Various enum conversion methods.
@@ -226,4 +226,4 @@ operator<<(std::ostream & os, const CutDirection & value) {
     return os;
 }
 
-} // namespace SongEditor
+} // namespace BeatPatterns

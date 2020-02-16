@@ -4,7 +4,7 @@
 #include "ui_SongInfoForm.h"
 
 using namespace std;
-using namespace SongEditor;
+using namespace BeatPatterns;
 
 SongInfoForm::SongInfoForm(QWidget *parent) :
     QWidget(parent),

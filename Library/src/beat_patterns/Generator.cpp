@@ -6,7 +6,7 @@
 using std::cout;
 using std::endl;
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 /**
  * Return a random number between these two values.
@@ -167,4 +167,4 @@ Generator::possiblePatterns(Pattern_Vec &vec, double ) {
 }
 
 
-} // namespace SongEditor
+} // namespace BeatPatterns

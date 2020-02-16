@@ -13,7 +13,7 @@ using std::cerr;
 using std::endl;
 using std::string;
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 /**
  * Constructor.
@@ -68,7 +68,7 @@ CLI::usage(const char *progName) {
          << "\n"
          << "Options:\n"
          << "\n"
-         << " --init               Initialize your ~/.SongEditorConfig file. You can then hand-edit it.\n"
+         << " --init               Initialize your ~/.BeatPatternsConfig file. You can then hand-edit it.\n"
          << "\n"
          << " --song directory     Path to the song.egg file.\n"
          << "\n"
@@ -135,7 +135,7 @@ CLI::run() {
 void
 CLI::doInit() {
     Preferences::save();
-    cout << "Your ~/.SongEditorConfig has been created and can now be edited.\n";
+    cout << "Your ~/.BeatPatternsConfig has been created and can now be edited.\n";
 }
 
 /**
@@ -275,4 +275,4 @@ CLI::copyIfNecessary(const std::string & fromName) {
 }
 
 
-} // namespace SongEditor
+} // namespace BeatPatterns

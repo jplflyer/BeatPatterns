@@ -5,15 +5,15 @@
 #include <QPixmap>
 
 #include <showpage/StringMethods.h>
-#include <song_editor/Song.h>
-#include <song_editor/Generator.h>
+#include <beat_patterns/Song.h>
+#include <beat_patterns/Generator.h>
 
 #include "NotesViewPanel.h"
 
 using std::string;
 using std::cout;
 using std::endl;
-using namespace SongEditor;
+using namespace BeatPatterns;
 
 QIcon * NotesViewPanel::blankIcon = nullptr;
 QIcon * IconHolder::up = nullptr;
@@ -85,7 +85,7 @@ NotesViewPanel::NotesViewPanel(const std::string &_title, QWidget *parent)
  * Where are we in the file.
  */
 void
-NotesViewPanel::setLocation(int index, SongEditor::SongBeatmapData * dataP) {
+NotesViewPanel::setLocation(int index, BeatPatterns::SongBeatmapData * dataP) {
     beatmapData = dataP;
     myIndex = index;
 

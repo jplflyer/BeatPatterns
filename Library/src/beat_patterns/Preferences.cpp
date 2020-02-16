@@ -19,7 +19,7 @@
 using namespace std;
 using JSON = nlohmann::json;
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 Preferences * Preferences::s_singleton = nullptr;
 std::string Preferences::appLocation;
@@ -50,10 +50,10 @@ void Preferences::setupForCLI() {
 
     // Can we find the Patterns?
     char const * possibleLocations[] = {
-        "/usr/local/etc/song_editor/Patterns",
-        "/Applications/SongEditor.app/Contents/Resources/Patterns",
+        "/usr/local/etc/BeatPatterns/Patterns",
+        "/Applications/BeatPatterns.app/Contents/Resources/Patterns",
         "Patterns",
-        "../SongEditor/Patterns",
+        "../BeatPatterns/Patterns",
         nullptr
     };
     const char * location = lookForDirectory(possibleLocations);
@@ -101,7 +101,7 @@ Preferences::load() {
     }
 
     homeDir = home;
-    configFileName = homeDir + "/.SongEditorConfig";
+    configFileName = homeDir + "/.BeatPatternsConfig";
     libraryPath = homeDir + "/Music/BeatSaber";
 
     if ( access( configFileName.c_str(), F_OK ) != -1 ) {

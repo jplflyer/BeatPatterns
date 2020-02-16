@@ -29,7 +29,7 @@ The Library directory holds the none-GUI code.
 * The CLI
 * Test cases
 
-The SongEditor directory holds the GUI. This is a Qt application.
+The BeatPatterns directory holds the GUI. This is a Qt application.
 
 # To Build
 If you want to build or contribute, you'll need:
@@ -44,7 +44,7 @@ Clone the git repo. Build the library first. I don't have any autoconfigure tool
 
 If you want to put the CLI tools into /usr/local/bin and /usr/local/etc, then sudo make install. The CLI itself is not required to build the GUI, but you have to build the library.
 
-To build the GUI, I do it from Qt Creator. Run Qt Creator and open the SongEditor project. Then build like you would normally. I'm sorry -- I'm not going to provide a tutorial on Qt.
+To build the GUI, I do it from Qt Creator. Run Qt Creator and open the BeatPatterns project. Then build like you would normally. I'm sorry -- I'm not going to provide a tutorial on Qt.
 
 # Contributing
 In the library directory, there are some important includes with their corresponding .cpp files.
@@ -98,13 +98,13 @@ Then save it.
 To install it on your machine, you'll need to know how to use BMBF. And you'll need to zip it yourself.
 
 # About the Patterns files
-The code expects to find patterns inside the SongEditor.app directory:
+The code expects to find patterns inside the BeatPatterns.app directory:
 
-    SongEditor.app/Contents/Resources/Patterns
+    BeatPatterns.app/Contents/Resources/Patterns
 
 The build puts them there. However, it doesn't necessarily update them reliably. If you edit the file in the main project area, you might have to clean-all and rebuild to get it there.
 
-OR there's a Copy.sh script in the SongEditor directory you can run.
+OR there's a Copy.sh script in the BeatPatterns directory you can run.
 
 Note that I also have a bunch of image files that get copied the same way, but there rather static, so it should just be fine. Copy.sh doesn't touch them.
 

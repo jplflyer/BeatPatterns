@@ -15,7 +15,7 @@
 // from a resource file in our install location. The user can also add custom
 // patterns.
 //
-namespace SongEditor {
+namespace BeatPatterns {
 
 // Forward reference
 class Pattern;
@@ -196,6 +196,6 @@ public:
 };
 
 
-}	// namespace SongEditor
+}	// namespace BeatPatterns
 
 #endif // PATTERN_H

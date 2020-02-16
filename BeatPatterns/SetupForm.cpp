@@ -1,13 +1,13 @@
 #include <iostream>
 #include <QFileDialog>
 
-#include <song_editor/Generator.h>
+#include <beat_patterns/Generator.h>
 
 #include "SetupForm.h"
 #include "ui_SetupForm.h"
 
 using namespace std;
-using namespace SongEditor;
+using namespace BeatPatterns;
 
 SetupForm::SetupForm(QWidget *parent) :
     QWidget(parent),

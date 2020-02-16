@@ -10,7 +10,7 @@
 
 #include "Common.h"
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 /**
  * This is what appears in Normal.dat
@@ -144,7 +144,7 @@ public:
     std::string environmentName = "DefaultEnvironment";
 
     // This is the customData section.
-    std::string editor = "SongEditor For Mac";
+    std::string editor = "BeatPatterns For Mac";
 
     // customData.editorSettings.modSettings.customColors  section
     bool customColorsEnabled = false;

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "NotesViewPanel.h"
 
-#include <song_editor/Song.h>
+#include <beat_patterns/Song.h>
 
 namespace Ui {
 class NotesTableForm;
@@ -49,17 +49,17 @@ private:
     NotesViewPanel *	currentNotesPanel = nullptr;
     NotesViewPanel *	upcomingNotesPanel = nullptr;
 
-    SongEditor::Song *	currentSong = nullptr;
-    SongEditor::SongDifficulty * currentDifficulty = nullptr;
-    SongEditor::SongBeatmapData *data = nullptr;
+    BeatPatterns::Song *	currentSong = nullptr;
+    BeatPatterns::SongDifficulty * currentDifficulty = nullptr;
+    BeatPatterns::SongBeatmapData *data = nullptr;
 
-    SongEditor::SongDifficulty * easy = nullptr;
-    SongEditor::SongDifficulty * normal = nullptr;
-    SongEditor::SongDifficulty * hard = nullptr;
-    SongEditor::SongDifficulty * expert = nullptr;
-    SongEditor::SongDifficulty * expertPlus = nullptr;
+    BeatPatterns::SongDifficulty * easy = nullptr;
+    BeatPatterns::SongDifficulty * normal = nullptr;
+    BeatPatterns::SongDifficulty * hard = nullptr;
+    BeatPatterns::SongDifficulty * expert = nullptr;
+    BeatPatterns::SongDifficulty * expertPlus = nullptr;
 
-    void view(SongEditor::LevelDifficulty difficulty);
+    void view(BeatPatterns::LevelDifficulty difficulty);
     void updateDetails();
 
 };

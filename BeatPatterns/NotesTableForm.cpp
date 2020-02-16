@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
 
-#include <song_editor/Song.h>
-#include <song_editor/Generator.h>
+#include <beat_patterns/Song.h>
+#include <beat_patterns/Generator.h>
 
 #include "NotesTableForm.h"
 #include "ui_NotesTableForm.h"
 
 
-using namespace SongEditor;
+using namespace BeatPatterns;
 using std::string;
 
 /**
@@ -78,13 +78,13 @@ NotesTableForm::songLoaded() {
  * View the map for this difficulty, which might involve creating it first.
  */
 void
-NotesTableForm::view(SongEditor::LevelDifficulty difficulty) {
+NotesTableForm::view(BeatPatterns::LevelDifficulty difficulty) {
     switch(difficulty) {
-        case SongEditor::LevelDifficulty::Easy: currentDifficulty = easy; break;
-        case SongEditor::LevelDifficulty::Normal: currentDifficulty = normal; break;
-        case SongEditor::LevelDifficulty::Hard: currentDifficulty = hard; break;
-        case SongEditor::LevelDifficulty::Expert: currentDifficulty = expert; break;
-        case SongEditor::LevelDifficulty::ExpertPlus: currentDifficulty = expertPlus; break;
+        case BeatPatterns::LevelDifficulty::Easy: currentDifficulty = easy; break;
+        case BeatPatterns::LevelDifficulty::Normal: currentDifficulty = normal; break;
+        case BeatPatterns::LevelDifficulty::Hard: currentDifficulty = hard; break;
+        case BeatPatterns::LevelDifficulty::Expert: currentDifficulty = expert; break;
+        case BeatPatterns::LevelDifficulty::ExpertPlus: currentDifficulty = expertPlus; break;
     }
 
     if (currentDifficulty == nullptr) {
@@ -133,67 +133,67 @@ NotesTableForm::updateDetails() {
 //======================================================================
 
 void NotesTableForm::on_upLeftBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_UpLeft;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_UpLeft;
 }
 
 void NotesTableForm::on_upBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_Up;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_Up;
 }
 
 void NotesTableForm::on_upRightBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_UpRight;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_UpRight;
 }
 
 void NotesTableForm::on_leftBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_Left;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_Left;
 }
 
 void NotesTableForm::on_centerBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_None;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_None;
 }
 
 void NotesTableForm::on_rightBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_Right;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_Right;
 }
 
 void NotesTableForm::on_downLeftBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_DownLeft;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_DownLeft;
 }
 
 void NotesTableForm::on_downBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_Down;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_Down;
 }
 
 void NotesTableForm::on_downRightBtn_clicked() {
-    Song::currentCutDirection = SongEditor::NoteDirection_DownRight;
+    Song::currentCutDirection = BeatPatterns::NoteDirection_DownRight;
 }
 
 void NotesTableForm::on_redBtn_clicked() {
-    Song::currentNoteType = SongEditor::NoteType_Red;
+    Song::currentNoteType = BeatPatterns::NoteType_Red;
 }
 
 void NotesTableForm::on_blueBtn_clicked() {
-    Song::currentNoteType = SongEditor::NoteType_Blue;
+    Song::currentNoteType = BeatPatterns::NoteType_Blue;
 }
 
 void NotesTableForm::on_viewEasyPB_clicked() {
-    view(SongEditor::LevelDifficulty::Easy);
+    view(BeatPatterns::LevelDifficulty::Easy);
 }
 
 void NotesTableForm::on_viewNormalPB_clicked() {
-    view(SongEditor::LevelDifficulty::Normal);
+    view(BeatPatterns::LevelDifficulty::Normal);
 }
 
 void NotesTableForm::on_viewHardPB_clicked() {
-    view(SongEditor::LevelDifficulty::Hard);
+    view(BeatPatterns::LevelDifficulty::Hard);
 }
 
 void NotesTableForm::on_viewExpertPB_clicked() {
-    view(SongEditor::LevelDifficulty::Expert);
+    view(BeatPatterns::LevelDifficulty::Expert);
 }
 
 void NotesTableForm::on_viewExpertPlusPB_clicked() {
-    view(SongEditor::LevelDifficulty::ExpertPlus);
+    view(BeatPatterns::LevelDifficulty::ExpertPlus);
 }
 
 void NotesTableForm::on_regeneratePB_clicked()

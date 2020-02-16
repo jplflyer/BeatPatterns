@@ -12,7 +12,7 @@ using std::string;
 
 using JSON = nlohmann::json;
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 /**
  * Constructor.
@@ -393,4 +393,4 @@ std::ostream & operator<<(std::ostream &os, const Location &loc) {
 }
 
 
-} // namespace SongEditor
+} // namespace BeatPatterns

@@ -34,7 +34,7 @@ DEPDIR := .d
 TEST_SRC=test
 
 SP_SRC_DIR=${SRCDIR}/showpage
-SE_SRC_DIR=${SRCDIR}/song_editor
+SE_SRC_DIR=${SRCDIR}/beat_patterns
 
 VPATH := ${SRCDIR}:${SP_SRC_DIR}:${SE_SRC_DIR}:${TEST_SRC}
 CXXFLAGS := -I/usr/local/include -I./include -Isrc -std=c++14 -g -Wno-unused-local-typedefs -Wno-deprecated-declarations
@@ -55,8 +55,8 @@ SHOWPAGE_SRC := $(wildcard ${SP_SRC_DIR}/*.cpp)
 SONGEDITOR_SRC := $(wildcard ${SE_SRC_DIR}/*.cpp)
 LIB_OBJ := $(patsubst ${SP_SRC_DIR}/%.cpp,${OBJDIR}/%.o,${SHOWPAGE_SRC}) $(patsubst ${SE_SRC_DIR}/%.cpp,${OBJDIR}/%.o,${SONGEDITOR_SRC})
 
-LIBNAME=songeditor${MACAPPEND}
-LIB=lib/libsongeditor${MACAPPEND}.a
+LIBNAME=beatpatterns${MACAPPEND}
+LIB=lib/libbeatpatterns${MACAPPEND}.a
 LIB_ARGS= -cvrU
 ifeq ($(UNAME), Darwin)
 	LIB_ARGS= -cvr
@@ -64,7 +64,7 @@ endif
 
 INSTALL_BASE=/usr/local
 
-PROGRAMS=SongEditor
+PROGRAMS=BeatPatterns
 
 #======================================================================
 # Top-level targets.
@@ -132,7 +132,7 @@ ${LIB}: ${LIB_OBJ}
 #======================================================================
 # The CLI
 #======================================================================
-SongEditor: ${OBJDIR}/CLI-Main.o ${LIB}
+BeatPatterns: ${OBJDIR}/CLI-Main.o ${LIB}
 	$(CXX) ${OBJDIR}/CLI-Main.o -L. -l${LIBNAME} ${LDFLAGS} $(OUTPUT_OPTION)
 
 #======================================================================

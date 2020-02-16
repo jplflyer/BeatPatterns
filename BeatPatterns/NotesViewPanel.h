@@ -10,7 +10,7 @@
 #include <QLineEdit>
 #include <QIcon>
 
-#include <song_editor/Song.h>
+#include <beat_patterns/Song.h>
 
 class IconHolder {
 public:
@@ -53,15 +53,15 @@ private:
     // Left to right, bottom to top
     QToolButton * buttons[3][4];
 
-    SongEditor::SongBeatmapData * beatmapData = nullptr;
+    BeatPatterns::SongBeatmapData * beatmapData = nullptr;
     int myIndex;
 
-    void showNote(SongEditor::SongBeatmapData::Note &note);
+    void showNote(BeatPatterns::SongBeatmapData::Note &note);
 
 public:
     NotesViewPanel(const std::string &title, QWidget *parent = nullptr);
 
-    void setLocation(int index, SongEditor::SongBeatmapData * dataP);
+    void setLocation(int index, BeatPatterns::SongBeatmapData * dataP);
 
     static QIcon * makeIcons();
 

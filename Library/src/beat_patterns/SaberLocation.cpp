@@ -1,9 +1,9 @@
 #include "SaberLocation.h"
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 SaberLocation::SaberLocation() {
 }
 
 
-} // namespace SongEditor
+} // namespace BeatPatterns

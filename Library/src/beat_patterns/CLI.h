@@ -5,7 +5,7 @@
 #include "Common.h"
 #include "Song.h"
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 /**
  * This defines our CLI.
@@ -46,6 +46,6 @@ public:
     void run();
 };
 
-} // namespace SongEditor
+} // namespace BeatPatterns
 
 #endif // CLI_H

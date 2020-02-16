@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include <song_editor/Song.h>
+#include <beat_patterns/Song.h>
 
 namespace Ui {
 class SongInfoForm;
@@ -16,13 +16,13 @@ class SongInfoForm : public QWidget
 private:
     Ui::SongInfoForm *ui;
 
-    SongEditor::Song * currentSong = nullptr;
+    BeatPatterns::Song * currentSong = nullptr;
 
 public:
     explicit SongInfoForm(QWidget *parent = nullptr);
     ~SongInfoForm();
 
-    void setSong(SongEditor::Song *value);
+    void setSong(BeatPatterns::Song *value);
 };
 
 #endif // SONGINFOFORM_H

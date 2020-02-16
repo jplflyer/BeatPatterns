@@ -8,7 +8,7 @@
 // This has a bunch of common classes.
 //
 
-namespace SongEditor {
+namespace BeatPatterns {
 
 const int NoteType_Red = 0;
 const int NoteType_Blue = 1;
@@ -58,6 +58,6 @@ CutDirection toCutDirection(const std::string &);
 CutDirection mirrorCutDirection(CutDirection, bool mirrorLeftRight = true, bool mirrorUpDown = false);
 std::ostream & operator<<(std::ostream & os, const CutDirection & value);
 
-} // namespace SongEditor;
+} // namespace BeatPatterns;
 
 #endif // COMMON_H

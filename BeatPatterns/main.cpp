@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QCoreApplication>
 
-#include <song_editor/Preferences.h>
+#include <beat_patterns/Preferences.h>
 
 #include "MainWindow.h"
 
@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     boost::filesystem::path contentsPath = appDirPath.parent_path();
     boost::filesystem::path applicationPath = contentsPath.parent_path();
 
-    SongEditor::Preferences::setAppLocation( applicationPath.string() );
-    SongEditor::Preferences::getSingleton();
+    BeatPatterns::Preferences::setAppLocation( applicationPath.string() );
+    BeatPatterns::Preferences::getSingleton();
 
     MainWindow w;
     w.show();
