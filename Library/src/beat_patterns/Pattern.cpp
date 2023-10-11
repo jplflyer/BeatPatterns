@@ -36,12 +36,17 @@ void Pattern::fromJSON(const JSON & json) {
     difficulty = toPatternDifficulty(stringValue(json, "difficulty"));
 
     JSON useWeightsJSON = jsonValue(json, "useWeights");
+    JSON stepByJSON = jsonValue(json, "stepBy");
     JSON startingLocationsJSON = jsonValue(json, "startingLocations");
     JSON noteSequenceJSON = jsonValue(json, "noteSequence");
 
     useWeights.fromJSON(useWeightsJSON);
     startingLocations.fromJSON(startingLocationsJSON);
     noteSequence.fromJSON(noteSequenceJSON);
+
+    if (!stepByJSON.empty()) {
+        stepBy.fromJSON(stepByJSON);
+    }
 
     auto finder = json.find("transformation");
     if (finder != json.end()) {
@@ -183,6 +188,20 @@ void Pattern::getStartingLocation(int &lineLayer, int &lineIndex) {
             return;
         }
     }
+}
+
+/**
+ * How much of a beat do we step between notes?
+ */
+double Pattern::stepByFor(LevelDifficulty difficulty, int bpm) const {
+    if (transformation.patternName.length() == 0) {
+        if (transformation.pattern == nullptr) {
+            return 1.0;
+        }
+        return transformation.pattern->stepByFor(difficulty, bpm);
+    }
+
+    return stepBy.stepByFor(difficulty, bpm);
 }
 
 //----------------------------------------------------------------------
@@ -390,6 +409,109 @@ void Location::toJSON(JSON & json) const {
 std::ostream & operator<<(std::ostream &os, const Location &loc) {
     os << "(" << loc.lineLayer << ", " << loc.lineIndex << (loc.preferred ? ", preferred)" : ")");
     return os;
+}
+
+//======================================================================
+// Step-By Data, which controls the speed of a pattern.
+//======================================================================
+
+/**
+ * What step-by (portion of a beat) should we use for this level difficulty and BPM.
+ */
+double
+StepBy::stepByFor(LevelDifficulty difficulty, int bpm) {
+    double rv = 1.0;
+    JSON_Serializable_PointerVector<BPMStepBy> * use = nullptr;
+
+    // We don't necessarily have data for each level difficulty, so grab
+    // the harest one that makes sense.
+    if (easy.size() > 0) {
+        use = &easy;
+    }
+    if (difficulty >= LevelDifficulty::Normal && normal.size() > 0) {
+        use = &normal;
+    }
+    if (difficulty >= LevelDifficulty::Hard && hard.size() > 0) {
+        use = &hard;
+    }
+    if (difficulty >= LevelDifficulty::Expert && expert.size() > 0) {
+        use = &expert;
+    }
+    if (difficulty >= LevelDifficulty::ExpertPlus && expertPlus.size() > 0) {
+        use = &expertPlus;
+    }
+
+    if (use != nullptr) {
+        for (BPMStepBy *by: *use) {
+            rv = by->stepBy;
+            if (bpm <= by->maxBPM) {
+                break;
+            }
+        }
+    }
+
+    return rv;
+}
+
+/**
+ * Read from JSON.
+ */
+void StepBy::fromJSON(const JSON & json) {
+    easy.readFromJSON(json, "easy");
+    normal.readFromJSON(json, "normal");
+    hard.readFromJSON(json, "hard");
+    expert.readFromJSON(json, "expert");
+    expertPlus.readFromJSON(json, "expertPlus");
+}
+
+/**
+ * Write to JSON.
+ */
+void StepBy::toJSON(JSON & json) const {
+    easy.writeToJSON(json, "easy");
+    normal.writeToJSON(json, "normal");
+    hard.writeToJSON(json, "hard");
+    expert.writeToJSON(json, "expert");
+    expertPlus.writeToJSON(json, "expertPlus");
+}
+
+/**
+ * Read from JSON
+ */
+void StepBy::BPMStepBy::fromJSON(const nlohmann::json & json) {
+    maxBPM = intValue(json, "maxBPM");
+    stepBy = doubleValue(json, "stepBy");
+}
+
+/**
+ * Write to JSON.
+ */
+void StepBy::BPMStepBy::toJSON(nlohmann::json & json) const {
+    if (maxBPM < 10000) {
+        json["maxBPM"] = maxBPM;
+    }
+    json["stepBy"] = stepBy;
+}
+
+/**
+ * Read from JSON if the JSON array exists.
+ */
+void StepBy::BPMStepBy_Vec::readFromJSON(const nlohmann::json &json, const std::string &key) {
+    JSON childJSON = jsonValue(json, key);
+    if (!childJSON.empty()) {
+        fromJSON(childJSON);
+    }
+}
+
+/**
+ * Write to JSON but only if we're non-empty.
+ */
+void StepBy::BPMStepBy_Vec::writeToJSON(nlohmann::json &json, const std::string &key) const {
+    if (size() > 0) {
+        JSON childJSON = JSON::array();
+        toJSON(childJSON);
+        json[key] = childJSON;
+    }
 }
 
 

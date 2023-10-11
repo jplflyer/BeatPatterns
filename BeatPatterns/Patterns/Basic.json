@@ -143,6 +143,10 @@
 		"name": "Blue Up/Down",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
+		"stepBy":  {
+			"easy": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"hard": [ {"maxBPM": 90, "stepBy": 0.25}, {"maxBPM": 150, "stepBy": 0.5}, {"stepBy": 1.0} ]
+		},
 		"startingLocations": [
 			{ "lineIndex": 0, "lineLayer": 0},
 			{ "lineIndex": 1, "lineLayer": 0},
@@ -162,7 +166,7 @@
 				{ "cubeType": "Blue", "cutDirection": "Up"}
 			],
 			[
-				{ "cubeType": "Blue", "cutDirection": "Down"}
+				{ "cubeType": "Blue", "cutDirection": "Down", "relativeX": 0, "relativeY": 0}
 			]
 		]
 	},
@@ -176,28 +180,7 @@
 		"name": "Blue Down/Up",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 500, "normal": 500, "hard": 400, "expert": 200, "expertPlus": 100},
-		"startingLocations": [
-			{ "lineIndex": 0, "lineLayer": 0},
-			{ "lineIndex": 1, "lineLayer": 0},
-			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
-			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
-
-			{ "lineIndex": 0, "lineLayer": 1},
-			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
-
-			{ "lineIndex": 0, "lineLayer": 2},
-			{ "lineIndex": 1, "lineLayer": 2},
-			{ "lineIndex": 2, "lineLayer": 2},
-			{ "lineIndex": 3, "lineLayer": 2}
-		],
-		"noteSequence": [
-			[
-				{ "cubeType": "Blue", "cutDirection": "Down"}
-			],
-			[
-				{ "cubeType": "Blue", "cutDirection": "Up"}
-			]
-		]
+		"transformation": { "patternName": "Blue Up/Down", "swapColors": false, "mirrorLeftRight": false, "swapUpDown": true }
 	},
 	{
 		"name": "Red Down/Up",
@@ -209,6 +192,12 @@
 		"name": "Blue/Red Down",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 300, "normal": 400, "hard": 400, "expert": 300, "expertPlus": 200},
+		"stepBy":  {
+			"easy": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"normal": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"hard": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"expert": [ {"maxBPM": 90, "stepBy": 0.25}, {"maxBPM": 150, "stepBy": 0.5}, {"stepBy": 1.0} ]
+		},
 		"startingLocations": [
 			{ "lineIndex": 1, "lineLayer": 0},
 			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
@@ -238,23 +227,7 @@
 		"name": "Blue/Red Up",
 		"difficulty": "Easy",
 		"useWeights": { "easy": 300, "normal": 400, "hard": 400, "expert": 300, "expertPlus": 200},
-		"startingLocations": [
-			{ "lineIndex": 1, "lineLayer": 0},
-			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},
-			{ "lineIndex": 3, "lineLayer": 0, "preferred": true},
-
-			{ "lineIndex": 3, "lineLayer": 1, "preferred": true},
-
-			{ "lineIndex": 1, "lineLayer": 2},
-			{ "lineIndex": 2, "lineLayer": 2},
-			{ "lineIndex": 3, "lineLayer": 2}
-		],
-		"noteSequence": [
-			[
-				{ "cubeType": "Blue", "cutDirection": "Up"},
-				{ "cubeType": "Red", "cutDirection": "Up", "relativeX": -1}
-			]
-		]
+		"transformation": { "patternName": "Blue/Red Down", "swapColors": false, "mirrorLeftRight": false, "swapUpDown": true}
 	},
 	{
 		"name": "Red/Blue Up",
@@ -267,6 +240,13 @@
 		"name": "Blue Up/Red Down",
 		"difficulty": "Medium",
 		"useWeights": { "easy": 50, "normal": 200, "hard": 500, "expert": 500, "expertPlus": 500},
+		"stepBy":  {
+			"easy": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"normal": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"hard": [ {"maxBPM": 90, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"expert": [ {"maxBPM": 90, "stepBy": 0.25}, {"maxBPM": 150, "stepBy": 0.5}, {"stepBy": 1.0} ],
+			"expertPlus": [ {"maxBPM": 90, "stepBy": 0.25}, {"maxBPM": 150, "stepBy": 0.5}, {"stepBy": 1.0} ]
+		},
 		"startingLocations": [
 			{ "lineIndex": 1, "lineLayer": 0},
 			{ "lineIndex": 2, "lineLayer": 0, "preferred": true},

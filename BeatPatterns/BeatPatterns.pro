@@ -11,7 +11,7 @@ INCLUDEPATH += /usr/local/include ../Library/include ../Library/src
 
 LIBS += -v
 LIBS += -L/usr/local/lib  -L../Library/lib
-LIBS += -lsongeditor-mac -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-window -lboost_filesystem
+LIBS += -lbeatpatterns-mac -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-window -lboost_filesystem
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -36,7 +36,6 @@ HEADERS += \
     MainWindow.h \
     NotesTableForm.h \
     NotesViewPanel.h \
-    Preferences.h \
     SetupForm.h \
     SongInfoForm.h
 

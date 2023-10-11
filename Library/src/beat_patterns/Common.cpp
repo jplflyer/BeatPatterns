@@ -117,7 +117,11 @@ operator<<(std::ostream & os, const CubeType & value) {
 // constants in Common.h.
 //======================================================================
 
-std::string cutDirectionToString(CutDirection cutDirection) {
+/**
+ * Return the value to store in a Pattern JSON file.
+ */
+std::string
+cutDirectionToString(CutDirection cutDirection) {
     switch(cutDirection) {
         case CutDirection::Up:			return "Up";
         case CutDirection::Down:		return "Down";
@@ -135,7 +139,11 @@ std::string cutDirectionToString(CutDirection cutDirection) {
     return "Down";
 }
 
-int cutDirectionToInt(CutDirection cutDirection) {
+/**
+ * Return the integer value for output into a Beatmap file.
+ */
+int
+cutDirectionToInt(CutDirection cutDirection) {
     switch(cutDirection) {
         case CutDirection::Up:			return NoteDirection_Up;
         case CutDirection::Down:		return NoteDirection_Down;
@@ -153,7 +161,11 @@ int cutDirectionToInt(CutDirection cutDirection) {
     return NoteDirection_Down;
 }
 
-CutDirection toCutDirection(const std::string &str) {
+/**
+ * From this string (such as from a Pattern.json file), return our corresponding enum value.
+ */
+CutDirection
+toCutDirection(const std::string &str) {
     if (str == "Up") return CutDirection::Up;
     if (str == "Down") return CutDirection::Down;
     if (str == "Center") return CutDirection::Center;
@@ -165,6 +177,26 @@ CutDirection toCutDirection(const std::string &str) {
     if (str == "DownRight") return CutDirection::DownRight;
 
     return CutDirection::Down;
+}
+
+/**
+ * For this integer value (such as from a Beatmap file), return our corresponding enum value.
+ */
+CutDirection
+toCutDirection(int value) {
+    switch (value) {
+        case NoteDirection_Up: return CutDirection::Up;
+        case NoteDirection_Down: return CutDirection::Down;
+        case NoteDirection_None: return CutDirection::Center;
+        case NoteDirection_Left: return CutDirection::Left;
+        case NoteDirection_Right: return CutDirection::Right;
+        case NoteDirection_UpLeft: return CutDirection::UpLeft;
+        case NoteDirection_UpRight: return CutDirection::UpRight;
+        case NoteDirection_DownLeft: return CutDirection::DownLeft;
+        case NoteDirection_DownRight: return CutDirection::DownRight;
+    }
+
+    return CutDirection::Center;
 }
 
 CutDirection mirrorUpDown(CutDirection cutDirection) {

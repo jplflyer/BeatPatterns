@@ -112,6 +112,9 @@ namespace BeatPatterns {
 class Generator
 {
 private:
+    //----------------------------------------------------------------------
+    // Setup fields.
+    //----------------------------------------------------------------------
     Song &	song;
     SongDifficulty & difficulty;
     SongBeatmapData & beatmapData;
@@ -121,14 +124,26 @@ private:
     double	minimumDelayBetweenPatterns = 0.05;
     double	maximumDelayBetweenPatterns = 4.0;
 
-    /** This is the time of the last cut. */
-    double lastNoteBeat;
+    //----------------------------------------------------------------------
+    // These are fields about the current status.
+    //----------------------------------------------------------------------
 
     /** This is where we think the blue saber is. */
     SaberLocation blueSaberLocation;
 
     /** This is where we think the red saber is. */
     SaberLocation redSaberLocation;
+
+    double timeOfFirstNote;
+    double beatNumber;
+    double currentTime;
+    double remainingDuration;
+
+    //----------------------------------------------------------------------
+    // Methods.
+    //----------------------------------------------------------------------
+
+    void generateUntilDone();
 
     /** Returns the index of the last note added. */
     int pickAndApplyPattern(SongBeatmapData &output, int atIndex, double atBeat, double maxDuration);

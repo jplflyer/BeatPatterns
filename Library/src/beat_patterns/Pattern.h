@@ -8,6 +8,7 @@
 #include <showpage/JSON_Serializable.h>
 #include <showpage/PointerVector.h>
 
+#include "SaberLocation.h"
 #include "Common.h"
 
 //
@@ -149,6 +150,38 @@ public:
     void toJSON(nlohmann::json & json) const;
 };
 
+class StepBy: public JSON_Serializable {
+public:
+    class BPMStepBy {
+    public:
+        int maxBPM = 10000;
+        double stepBy = 1.0;
+
+        void fromJSON(const nlohmann::json & json);
+        void toJSON(nlohmann::json & json) const;
+    };
+
+    class BPMStepBy_Vec: public JSON_Serializable_PointerVector<BPMStepBy> {
+    public:
+        void writeToJSON(nlohmann::json &json, const std::string &key) const;
+        void readFromJSON(const nlohmann::json &json, const std::string &key);
+    };
+
+private:
+    BPMStepBy_Vec easy;
+    BPMStepBy_Vec normal;
+    BPMStepBy_Vec hard;
+    BPMStepBy_Vec expert;
+    BPMStepBy_Vec expertPlus;
+
+public:
+    double stepByFor(LevelDifficulty difficulty, int bpm) const;
+
+    void fromJSON(const nlohmann::json & json);
+    void toJSON(nlohmann::json & json) const;
+};
+
+
 /**
  * The full pattern.
  */
@@ -161,6 +194,7 @@ public:
     std::string			name;
     PatternDifficulty	difficulty;
     UseWeights			useWeights;
+    StepBy				stepBy;
 
     Location_Vec		startingLocations;
     NoteSequence		noteSequence;
@@ -179,6 +213,7 @@ public:
     Pattern * getTransformation();
 
     void getStartingLocation(int &lineLayer, int &lineIndex);
+    double stepByFor(LevelDifficulty difficulty, int bpm) const;
 
     bool compatibleWithSaberLocations(SaberLocation &redLocation, SaberLocation &blueLocation);
 };

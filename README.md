@@ -10,14 +10,33 @@ If you just need the binaries, email me at jpl@showpage.org. I can only give you
 
 My goal is to provide a common location to download precompiled binaries.
 
+# Contributing
+Anyone can contribute to this project. You don't need to be a programmer. Here are some areas where I could use some real assistance. The first set is how non-programmers can help.
+
+* More patterns. See PATTERNS.md for more information.
+* Lighting patterns. I haven't touched this yet. Email me if you want to help with lighting design.
+* Suggestions on how to improve flow from pattern to pattern.
+* I haven't found documentation on 360-degree maps. Help?
+* Any general suggestions on improvement, but understand that I have to triage.
+* Any comments on how other programs handle shift when either BPM is imperfect or the song has sped up or slowed down?
+
+Now, if you're a programmer, even if you don't know a thing about Qt.
+
+* Windows port. Start with the library.
+* Windows port of the GUI. Requires Qt.
+* If you can do a better editor that looks like all the editors, that would rock.
+* Work with me to make the generator better. I can envision lots of features about patterns.
+* I want a built-in tapper of some sort to help determine BPM.
+
+
 # Current Status
 This is an initial checkin. The GUI is still crude, and the viewer is beyond weak. The generator is kind of cool.
 
 Right now, the generator doesn't understand past context, so it can do several down-cuts in a row rather than knowing it should pick something else. It will get there.
 
-I cannot create a new difficulty level map yet. For instance, my sample song only has a Normal. It crashes if I try to create an Easy.
-
 And my code is a bit on the naive side when it comes to mapping extensions. I might very well destroy data you would like to have.
+
+I've shifted to working through the CLI. Creating new mapped levels from the GUI may still be broken.
 
 # The Generator
 The goal is to be able to automatically map an entire song with the push of a button. The program works off the concept of patterns. For instance, a down-up cut is a pattern. The generator doesn't think about individual notes as much as it does patterns.
@@ -32,7 +51,7 @@ The Library directory holds the none-GUI code.
 The BeatPatterns directory holds the GUI. This is a Qt application.
 
 # To Build
-If you want to build or contribute, you'll need:
+If you want to build or contribute as a programmer, you'll need:
 
 * Qt Open Source Version
 * Xcode command line utilities (Mac)
@@ -40,13 +59,13 @@ If you want to build or contribute, you'll need:
 * gmake
 * These libraries: -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-window -lboost_filesystem
 
-Clone the git repo. Build the library first. I don't have any autoconfigure tools yet, but maybe someone will produce them. Just run make.
+Clone the git repo. Build the library first. I don't have any autoconfigure tools yet, but maybe someone will produce them. Just run make. It works as is on Mac OS. No comment on any other environment.
 
 If you want to put the CLI tools into /usr/local/bin and /usr/local/etc, then sudo make install. The CLI itself is not required to build the GUI, but you have to build the library.
 
 To build the GUI, I do it from Qt Creator. Run Qt Creator and open the BeatPatterns project. Then build like you would normally. I'm sorry -- I'm not going to provide a tutorial on Qt.
 
-# Contributing
+# Program Structure and Qt Sometimes Sucks
 In the library directory, there are some important includes with their corresponding .cpp files.
 
 * Common.h includes a few simple structures that are used between a song and a pattern.
@@ -61,9 +80,6 @@ For inside Qt Creator, in the very left side, go to Projects (Under Welcome, Edi
 This brings you to run settings. In the middle of the screen near the top is a grey box with some stuff. One of those checkboxes near the bottom of that grey box is "Add build library search path to DYLD_LIBRARY_PATH...".
 
 Click that sucker OFF.
-
-# Code Goals
-There's a lot to do.
 
 ## The Generator
 
@@ -80,9 +96,6 @@ If you edit the patterns, PLEASE make sure they are still valid JSON. Use some s
 * I'd like the GUI to be able to edit Patterns rather than editing them manually.
 * The editor section is really really lame. Did I mention how lame it is? It's not really functional, and I don't know how to do a 3D view yet.
 * I don't work with custom cube colors.
-
-# Using the CLI
-Okay, I haven't written it yet.
 
 # Using the GUI
 Run the GUI. So far, it requires an existing map, but of course, New Map is one of the goals. So Open an existing map. It can be really sparse, but you need at least one level to work on.

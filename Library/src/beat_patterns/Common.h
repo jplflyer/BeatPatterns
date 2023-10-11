@@ -54,6 +54,7 @@ enum class CutDirection {
 std::string cutDirectionToString(CutDirection);
 int cutDirectionToInt(CutDirection);
 CutDirection toCutDirection(const std::string &);
+CutDirection toCutDirection(int);
 
 CutDirection mirrorCutDirection(CutDirection, bool mirrorLeftRight = true, bool mirrorUpDown = false);
 std::ostream & operator<<(std::ostream & os, const CutDirection & value);

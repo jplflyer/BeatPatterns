@@ -43,12 +43,23 @@ void Generator::generateEntireSong() {
 
     // We need to calculate the beat number for the first note. We begin with the minimum
     // white space, then we round up to the nearest whole beat.
-    double timeOfFirstNote = minimumInitialWhitespace;
-    double beatNumber = std::ceil(timeOfFirstNote / song.beatDurationSeconds);
-    double currentTime = beatNumber * song.beatDurationSeconds;
-    double remainingDuration = song.duration - currentTime;
+    timeOfFirstNote = minimumInitialWhitespace;
+    beatNumber = std::ceil(timeOfFirstNote / song.beatDurationSeconds);
+    currentTime = beatNumber * song.beatDurationSeconds;
+    remainingDuration = song.duration - currentTime;
+}
 
-    lastNoteBeat = 0.0;
+/**
+ * This version is used to generate only over a range.
+ */
+void Generator::generateRange(int beatStart, int beatEnd) {
+}
+
+/**
+ * This method gets called after we've figured out what we're doing. Call this to actually iterate over generation.
+ */
+void
+Generator::generateUntilDone() {
     blueSaberLocation.reset();
     redSaberLocation.reset();
 
@@ -68,13 +79,6 @@ void Generator::generateEntireSong() {
 }
 
 /**
- * This version is used to generate only over a range.
- */
-void Generator::generateRange(int , int ) {
-
-}
-
-/**
  * This picks an appropriate pattern and applies it. Various constraints.
  *
  * 1. The starting time + duration of the pattern can not exceed maxDuration.
@@ -85,7 +89,6 @@ void Generator::generateRange(int , int ) {
  * 		sabers currently are. However, the longer it's been since the last pattern
  * 		ended, the more wriggle room we allow. This is modifed by difficulty level.
  *
- * Note that this method updates lastNoteBeat, blueSaberLocation, and redSaberLocation.
  */
 int
 Generator::pickAndApplyPattern(SongBeatmapData &output, int atIndex, double beatNumber, double maxDuration) {
@@ -112,6 +115,12 @@ Generator::pickAndApplyPattern(SongBeatmapData &output, int atIndex, double beat
 
     int lineLayer = 0;
     int lineIndex = 2;
+    double stepBy = pattern->stepByFor(difficulty.difficulty, song.info.beatsPerMinute);
+
+    if (stepBy <= 0.0) {
+        stepBy = 1.0;
+    }
+
     pattern->getStartingLocation(lineLayer, lineIndex);
 
     auto position = output.notes.begin();
@@ -127,6 +136,13 @@ Generator::pickAndApplyPattern(SongBeatmapData &output, int atIndex, double beat
             newNote->lineIndex = lineIndex + note.relativeX;
             newNote->lineLayer = lineLayer + note.relativeY;
 
+            if (note.cubeType == CubeType::Blue) {
+                this->blueSaberLocation.apply(*newNote, beatNumber);
+            }
+            else if (note.cubeType == CubeType::Red) {
+                this->redSaberLocation.apply(*newNote, beatNumber);
+            }
+
             if (atIndex == -1) {
                 beatmapData.notes.push_back(newNote);
             }
@@ -137,9 +153,17 @@ Generator::pickAndApplyPattern(SongBeatmapData &output, int atIndex, double beat
         }
 
         // Set to the next location.
-        // TODO: This needs to be way smarter.
-        beatNumber += 1;
+        beatNumber += stepBy;
     }
+
+    // Make sure our next pattern starts on the next beat and isn't insanely close.
+    // This is a little arbitrary, and I'll have to see how it works. I may want to
+    // add another value to the pattern that helps calculate this.
+    double nextBeatNumber = ceil(beatNumber);
+    if (nextBeatNumber - beatNumber < (stepBy * 2.0)) {
+        nextBeatNumber += 1.0;
+    }
+    beatNumber = nextBeatNumber;
 
     return atIndex - 1;
 }
